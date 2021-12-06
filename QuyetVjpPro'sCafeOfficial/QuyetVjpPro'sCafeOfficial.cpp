@@ -15,7 +15,6 @@ int main()
 	//dt.getListItems().at(dt.findById(id)).display();
 	//dt.display();
 	cout << "done!";
-	cout << "IC";
 	return 0;
 }
 
