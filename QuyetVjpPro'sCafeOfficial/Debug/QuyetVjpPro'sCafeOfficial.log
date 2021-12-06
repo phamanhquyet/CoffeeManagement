@@ -1,0 +1,9 @@
+﻿  DataEmployee.cpp
+E:\VSStudio\QuyetVjpPro'sCafeOfficial\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(77,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\QuyetVjpPro'sCafeOfficial\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(89,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\QuyetVjpPro'sCafeOfficial\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(109,23): warning C4018: '<': signed/unsigned mismatch
+  Employee.cpp
+E:\VSStudio\QuyetVjpPro'sCafeOfficial\QuyetVjpPro'sCafeOfficial\Employee.cpp(60,53): warning C4129: '|': unrecognized character escape sequence
+  QuyetVjpPro'sCafeOfficial.cpp
+  Generating Code...
+  QuyetVjpPro'sCafeOfficial.vcxproj -> E:\VSStudio\QuyetVjpPro'sCafeOfficial\Debug\QuyetVjpPro'sCafeOfficial.exe

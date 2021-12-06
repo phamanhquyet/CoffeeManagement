@@ -1,0 +1,6 @@
+1,tra sua,15000
+2,kem,5000
+3,bac xiu,10000
+4,pepsi,10000
+5,nuoc suoi,5000
+6,banh quy,3000

@@ -1,0 +1,83 @@
+#include "Items.h"
+
+Items::Items()
+{
+	this->idOfItem = "";
+	this->nameOfItem = "";
+	this->price = 0;
+	this->amount = 0;
+	this->idBill = "";
+}
+
+Items::Items(string idOfItem, string nameOfItem, int price)
+{
+	this->idOfItem = idOfItem;
+	this->nameOfItem = nameOfItem;
+	this->price = price;
+}
+
+Items::Items(string idOfItem, string nameOfItem, int price, long amount, string idBill)
+{
+	this->idOfItem = idOfItem;
+	this->nameOfItem = nameOfItem;
+	this->price = price;
+	this->amount = amount;
+	this->idBill = idBill;
+}
+
+string Items::getIdOfItem()
+{
+	return idOfItem;
+}
+
+string Items::getNameOfItem()
+{
+	return nameOfItem;
+}
+
+int Items::getPrice()
+{
+	return price;
+}
+
+long Items::getAmount()
+{
+	return amount;
+}
+
+string Items::getIdBill()
+{
+	return idBill;
+}
+
+void Items::setIdOfItem(string idOfItem)
+{
+	this->idOfItem = idOfItem;
+}
+
+void Items::setNameOfItem(string nameOfItem)
+{
+	this->nameOfItem = nameOfItem;
+}
+
+void Items::setPrice(int price)
+{
+	this->price = price;
+}
+
+void Items::setAmount(long amount)
+{
+	this->amount = amount;
+}
+
+void Items::setIdBill(string idBill)
+{
+	this->idBill = idBill;
+}
+
+void Items::display()
+{
+
+	cout<< "| "<<setw(5) << left << idOfItem << "\t\t\| " << setw(10) << nameOfItem << "\t| " << setw(10) << price << "\t|" << endl;
+	
+}
