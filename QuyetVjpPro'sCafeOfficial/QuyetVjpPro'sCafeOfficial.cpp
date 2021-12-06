@@ -16,6 +16,7 @@ int main()
 	//dt.display();
 	cout << "done!";
 	cout << "IC";
+	cout << "IC2";
 	return 0;
 }
 
