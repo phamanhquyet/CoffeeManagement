@@ -8,13 +8,14 @@ private:
 public:
 	DataEmployee();
 	void readFile();
-	void insert(string name, string address, string phone_number, int day, int month, int year, long basic_salary, int bonus);
+	void insert();
 	void updateFile();
+	void deleteEmployee();
 	void display();
 	int findById(string id);
 	int findByName(string name);
 	vector<Employee>getListEmployee();
-	void HashDisplayByName(string name);
+	void HashDisplayByName();
 	
 	//goi toi tinh tien cua Employee (id)
 	//...

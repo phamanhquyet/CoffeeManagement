@@ -18,6 +18,7 @@ void AppCoffee::login()
 	}
 	if (index == -1) {
 		cout << "Wrong!\n";
+		login();
 		return;
 	}
 	else
@@ -56,12 +57,15 @@ void AppCoffee::showCaseAdmin()
 	switch (key)
 	{
 	case '1':
+		listEmp.insert();
 		break;
 	case '2':
+		listEmp.deleteEmployee();
 		break;
 	case '3':
 		break;
 	case '4':
+		listEmp.HashDisplayByName();
 		break;
 	case '5':
 		listEmp.display();

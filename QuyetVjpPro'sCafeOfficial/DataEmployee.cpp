@@ -37,11 +37,28 @@ void DataEmployee::readFile()
 }
 
 
-void DataEmployee::insert(string name, string address, string phone_number, int day, int month, int year, long basic_salary, int bonus)
+void DataEmployee::insert()
 {
+    string name, address, phone_number;
+    int day, month, year, bonus;
+    long basic_salary;
     string idOfEmployee = to_string(generateId);
+    cin.ignore();
+    cout << "Input Name: ";
+    getline(cin, name);
+    cout << "Input Address: ";
+    getline(cin, address);
+    cout << "Input PhoneNumber: ";
+    getline(cin, phone_number);
+    cout << "Input Day-Month-Year: ";
+    cin >> day >> month >> year;
+    cout << "Input Basic Salary: ";
+    cin >> basic_salary;
+    cout << "Input Bonus: ";
+    cin >> bonus;
     Employee emp(idOfEmployee, name, address, phone_number, day, month, year, basic_salary, bonus);
     listEmployee.push_back(emp);
+    updateFile();
 }
 
 void DataEmployee::updateFile()
@@ -55,6 +72,26 @@ void DataEmployee::updateFile()
             << listEmployee.at(i).getBonus()<<endl;
     }
     fo.close();
+}
+
+void DataEmployee::deleteEmployee()
+{
+    int index = -1;
+    string name;
+    cin.ignore();
+    cout << "Input Name: ";
+    getline(cin, name);
+    for (int i = 0; i < listEmployee.size(); i++) {
+        if (listEmployee.at(i).getPerson().getName().compare(name) == 0) {
+            index = i;
+            listEmployee.erase(listEmployee.begin() + index);
+            cout << "DONE!\n";
+        }
+        updateFile();
+    }
+    if (index == -1) {
+        cout << "NULL!\n";
+    }
 }
 
 void DataEmployee::display()
@@ -100,12 +137,16 @@ vector<Employee> DataEmployee::getListEmployee()
     return listEmployee;
 }
 
-void DataEmployee::HashDisplayByName(string name)
+void DataEmployee::HashDisplayByName()
 {
+    string name;
+    cin.ignore();
+    cout << "Input Name: ";
+    getline(cin, name);
     bool flag = false;
-    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "+---------------+-----------------------+-----------------------+-----------------------+-------+-------+-------+---------------+---------------+" << endl;
     cout << "| Id\t\t| Name\t\t\t| Address\t\t| Phone Number\t\t| Day\t| Month\t| Year\t| Basic Salary\t| Bonus\t\t|" << endl;
-    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "+---------------+-----------------------+-----------------------+-----------------------+-------+-------+-------+---------------+---------------+" << endl;
     for (int i = 0; i < listEmployee.size(); i++) {
         if (listEmployee.at(i).getPerson().getName().find(name) != string::npos) {
             listEmployee.at(i).display();
@@ -113,9 +154,9 @@ void DataEmployee::HashDisplayByName(string name)
         }
     }
     if (flag == false) {
-        cout <<"|" << setw(80) << "Can't find!\t\t\t\t\t\t\t\t\t\t|" << endl;
+        cout << "| NULL\t\t| NULL\t\t\t| NULL\t\t\t| NULL\t\t\t| NULL\t| NULL\t| NULL\t| NULL\t\t| NULL\t\t|" << endl;
     }
-    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "+---------------+-----------------------+-----------------------+-----------------------+-------+-------+-------+---------------+---------------+" << endl;
 }
 
 DataEmployee::~DataEmployee()
