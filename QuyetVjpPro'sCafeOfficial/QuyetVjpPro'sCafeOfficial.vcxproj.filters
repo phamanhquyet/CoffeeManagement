@@ -124,5 +124,8 @@
     <Text Include="ListAccount.txt">
       <Filter>Header Files\Data</Filter>
     </Text>
+    <Text Include="Duc.txt">
+      <Filter>Header Files\Data</Filter>
+    </Text>
   </ItemGroup>
 </Project>

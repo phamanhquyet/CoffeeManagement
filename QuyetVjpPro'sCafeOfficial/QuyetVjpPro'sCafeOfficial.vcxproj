@@ -164,6 +164,7 @@
     <ClInclude Include="Person.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Duc.txt" />
     <Text Include="ListAccount.txt" />
     <Text Include="ListEmployee.txt" />
     <Text Include="ListItems.txt" />
