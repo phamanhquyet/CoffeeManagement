@@ -1,12 +1,11 @@
 #include"DataItems.h"
-#include"DataEmployee.h"
+#include"DataAccount.h"
 #include <iostream>
 int main()
 {
-	DataEmployee dt;
-	string name;
-	getline(cin,name);
-	dt.HashDisplayByName(name);
+	DataAccount dt;
+	//dt.readFile();
+	dt.findUserByUsername("phamanhquyet");
 	//string id;
 	//cout << "Nhap id cua san pham: ";
 	//cin >> id;
@@ -14,7 +13,7 @@ int main()
 	//cout << dt.getListItems().size() << endl;;
 	//dt.getListItems().at(dt.findById(id)).display();
 	//dt.display();
-	cout << "done!";
+	//cout << "done!";
 	return 0;
 }
 

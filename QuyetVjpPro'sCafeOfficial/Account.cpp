@@ -66,5 +66,5 @@ void Account::input()
 
 void Account::display()
 {
-	cout << "| " << setw(5) << left << id << "\t\t\| " << setw(15) << username << "\t| " << setw(15) << password << "\t| " << endl;
+	cout << "| " << setw(5) << left << id << "\t\t| " << setw(15) << username << "\t| " << setw(15) << password << "\t| " << setw(14) << permission << "|" << endl;
 }

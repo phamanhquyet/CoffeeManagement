@@ -13,7 +13,7 @@ public:
 	void readFile();
 	void updateFile();
 	void display();
-	bool findUserByUsername();
+	void findUserByUsername(string username);
 	vector<Account> getListAccount();
 
 	~DataAccount();

@@ -115,5 +115,8 @@
     <Text Include="testListEmp.txt">
       <Filter>Header Files\Data</Filter>
     </Text>
+    <Text Include="ListAccount.txt">
+      <Filter>Header Files\Data</Filter>
+    </Text>
   </ItemGroup>
 </Project>

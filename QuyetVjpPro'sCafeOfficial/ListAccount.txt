@@ -1,0 +1,4 @@
+1,nguyenminhduc,123456,admin
+2,phamanhquyet,123456,admin
+3,dominhnhat,123456,admin
+4,nguyenvana,123456,employeee

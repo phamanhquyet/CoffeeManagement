@@ -7,7 +7,7 @@ DataAccount::DataAccount()
 
 void DataAccount::readFile()
 {
-	ifstream fi("ListEmployee.txt");
+	ifstream fi("ListAccount.txt");
 	while (fi.good())
 	{
 		string id, username, password, permission;
@@ -17,10 +17,10 @@ void DataAccount::readFile()
 		getline(fi, permission, '\n');
 		if (id == "" || username == "" || password == "" || permission == "")
 			break;
+		this->generateId += 1;
+		Account acc(id, username, password, permission);
+		listAccount.push_back(acc);
 	}
-	this->generateId += 1;
-	Account acc(id, username, password, permission);
-	listAccount.push_back(acc);
 	fi.close();
 }
 
@@ -35,14 +35,23 @@ void DataAccount::updateFile()
 
 void DataAccount::display()
 {
-	cout << setw(100) << "List of accounts are working at Quyet Vjp Pro's Cafe" << endl;
-	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-	cout << "| Id\t\t| Username\t\t| Password\t\t| Permission\t\t|" << endl;
-	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << setw(68) << "List of accounts are working at Quyet Vjp Pro's Cafe" << endl;
+	cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
+	cout << "| ID\t\t| Username\t\t| Password\t\t| Permission\t|" << endl;
+	cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
 	for (int i = 0; unsigned(i) < listAccount.size(); i++) {
 		listAccount.at(i).display();
 	}
+	cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
+}
 
+void DataAccount::findUserByUsername(string username)
+{
+	for (int i = 0; i < listAccount.size(); i++) {
+		if (listAccount.at(i).getUsername().compare(username) == true ){
+			cout << i;
+		}
+	}
 }
 
 vector<Account> DataAccount::getListAccount()
