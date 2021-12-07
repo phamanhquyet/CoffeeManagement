@@ -1,9 +1,11 @@
-﻿  DataEmployee.cpp
-E:\VSStudio\QuyetVjpPro'sCafeOfficial\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(77,23): warning C4018: '<': signed/unsigned mismatch
-E:\VSStudio\QuyetVjpPro'sCafeOfficial\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(89,23): warning C4018: '<': signed/unsigned mismatch
-E:\VSStudio\QuyetVjpPro'sCafeOfficial\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(109,23): warning C4018: '<': signed/unsigned mismatch
-  Employee.cpp
-E:\VSStudio\QuyetVjpPro'sCafeOfficial\QuyetVjpPro'sCafeOfficial\Employee.cpp(60,53): warning C4129: '|': unrecognized character escape sequence
+﻿  DataAccount.cpp
+D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataAccount.cpp(22,14): error C2065: 'id': undeclared identifier
+D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataAccount.cpp(22,18): error C2065: 'username': undeclared identifier
+D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataAccount.cpp(22,28): error C2065: 'password': undeclared identifier
+D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataAccount.cpp(22,38): error C2065: 'permission': undeclared identifier
+  DataEmployee.cpp
+D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(77,23): warning C4018: '<': signed/unsigned mismatch
+D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(89,23): warning C4018: '<': signed/unsigned mismatch
+D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(109,23): warning C4018: '<': signed/unsigned mismatch
   QuyetVjpPro'sCafeOfficial.cpp
   Generating Code...
-  QuyetVjpPro'sCafeOfficial.vcxproj -> E:\VSStudio\QuyetVjpPro'sCafeOfficial\Debug\QuyetVjpPro'sCafeOfficial.exe

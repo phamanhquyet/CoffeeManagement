@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Data">
       <UniqueIdentifier>{813644a0-9a5e-481a-bd82-cd2e878a4751}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Account">
+      <UniqueIdentifier>{ae3d51be-d299-4d25-b7ab-151bee661d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Account">
+      <UniqueIdentifier>{78e7f778-070e-4c54-838f-a86dcb8d0ecb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="QuyetVjpPro%27sCafeOfficial.cpp">
@@ -63,6 +69,12 @@
     <ClCompile Include="DataEmployee.cpp">
       <Filter>Source Files\Data</Filter>
     </ClCompile>
+    <ClCompile Include="DataAccount.cpp">
+      <Filter>Source Files\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Account.cpp">
+      <Filter>Source Files\Account</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Date.h">
@@ -85,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="DataEmployee.h">
       <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DataAccount.h">
+      <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Account.h">
+      <Filter>Header Files\Account</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

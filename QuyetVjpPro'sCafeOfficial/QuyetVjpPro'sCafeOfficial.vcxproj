@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="DataAccount.cpp" />
     <ClCompile Include="DataEmployee.cpp" />
     <ClCompile Include="DataItems.cpp" />
     <ClCompile Include="Date.cpp" />
@@ -149,6 +151,8 @@
     <ClCompile Include="QuyetVjpPro%27sCafeOfficial.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="DataAccount.h" />
     <ClInclude Include="DataEmployee.h" />
     <ClInclude Include="DataItems.h" />
     <ClInclude Include="Date.h" />
