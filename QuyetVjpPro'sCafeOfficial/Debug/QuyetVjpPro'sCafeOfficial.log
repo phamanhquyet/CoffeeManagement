@@ -1,4 +1,2 @@
-﻿  DataAccount.cpp
-D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataAccount.cpp(50,20): warning C4018: '<': signed/unsigned mismatch
-D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataAccount.cpp(51,60): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+﻿  QuyetVjpPro'sCafeOfficial.cpp
   QuyetVjpPro'sCafeOfficial.vcxproj -> D:\Users\mimii\source\repos\CoffeeManagement\Debug\QuyetVjpPro'sCafeOfficial.exe

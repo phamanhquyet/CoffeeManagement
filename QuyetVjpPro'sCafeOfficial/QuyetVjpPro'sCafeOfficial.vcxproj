@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
+    <ClCompile Include="AppCoffee.cpp" />
     <ClCompile Include="DataAccount.cpp" />
     <ClCompile Include="DataEmployee.cpp" />
     <ClCompile Include="DataItems.cpp" />
@@ -152,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
+    <ClInclude Include="AppCoffee.h" />
     <ClInclude Include="DataAccount.h" />
     <ClInclude Include="DataEmployee.h" />
     <ClInclude Include="DataItems.h" />

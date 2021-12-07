@@ -75,6 +75,9 @@
     <ClCompile Include="Account.cpp">
       <Filter>Source Files\Account</Filter>
     </ClCompile>
+    <ClCompile Include="AppCoffee.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Date.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="Account.h">
       <Filter>Header Files\Account</Filter>
+    </ClInclude>
+    <ClInclude Include="AppCoffee.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

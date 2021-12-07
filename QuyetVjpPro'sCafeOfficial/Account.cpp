@@ -56,14 +56,6 @@ void Account::setPermisstion(string permission)
 	this->permission = permission;
 }
 
-void Account::input()
-{
-	cout << "Input Username: ";
-	getline(cin, username);
-	cout << "Input Password: ";
-	getline(cin, password);
-}
-
 void Account::display()
 {
 	cout << "| " << setw(5) << left << id << "\t\t| " << setw(15) << username << "\t| " << setw(15) << password << "\t| " << setw(14) << permission << "|" << endl;

@@ -35,7 +35,7 @@ void DataAccount::updateFile()
 
 void DataAccount::display()
 {
-	cout << setw(68) << "List of accounts are working at Quyet Vjp Pro's Cafe" << endl;
+	cout << setw(68) << "LIST ACCOUNTS QUYETVJPPRO'S CAFE OFFICIAL" << endl;
 	cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
 	cout << "| ID\t\t| Username\t\t| Password\t\t| Permission\t|" << endl;
 	cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
@@ -45,12 +45,27 @@ void DataAccount::display()
 	cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
 }
 
-void DataAccount::findUserByUsername(string username)
+void DataAccount::findUserByUsername()
 {
+	string username;
+	cout << "INPUT USERNAME: ";
+	cin >> username;
+	cout << setw(50) << "FIND USER BY USERNAME" << endl;
+	cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
+	cout << "| ID\t\t| Username\t\t| Password\t\t| Permission\t|" << endl;
+	cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
+	bool flag = false;
 	for (int i = 0; i < listAccount.size(); i++) {
-		if (listAccount.at(i).getUsername().compare(username) == true ){
-			cout << i;
+		if (listAccount.at(i).getUsername().find(username) != string::npos ){
+			listAccount.at(i).display();
+			flag = true;
+			cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
+			break;
 		}
+	}
+	if (flag == false) {
+		cout << "| NULL\t\t| NULL\t\t\t| NULL\t\t\t| NULL\t\t|" << endl;
+		cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
 	}
 }
 

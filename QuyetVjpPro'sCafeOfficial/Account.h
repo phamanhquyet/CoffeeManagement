@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -26,6 +27,5 @@ public:
 	void setPassword(string password);
 	void setPermisstion(string permission);
 
-	void input();
 	void display();
 };
