@@ -21,8 +21,10 @@ void AppCoffee::login()
 		login();
 		return;
 	}
-	else
+	else {
 		cout << "WELCOME \"" << listAcc.getListAccount().at(index).getUsername() << "\" TO QUYETVJPPRO'S CAFE\n";
+		cout << "TIME LOGIN: " << log.Time() << endl;
+	}
 	if (listAcc.getListAccount().at(index).getPermisstion() == "admin") {
 		cout << "PERMISSION: " << listAcc.getListAccount().at(index).getPermisstion() << endl;;
 		showCaseAdmin();
@@ -38,7 +40,7 @@ void AppCoffee::login()
 void AppCoffee::showCaseAdmin()
 {
 	char key;
-	cout << "\n";
+	//cout << "\n";
 	cout << "+-------------------------------------MENU ADMIN--------------------------------------+\n";
 	cout << "|\t\t\t\t1. Them Nhan Vien" << setw(39) << "|\n";
 	cout << "|\t\t\t\t2. Xoa Nhan Vien" << setw(40) << "|\n";
@@ -69,6 +71,7 @@ void AppCoffee::showCaseAdmin()
 		break;
 	case '5':
 		listEmp.display();
+		showCaseAdmin();
 		break;
 	case '6':
 		break;

@@ -148,6 +148,7 @@
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="FunctionInterface.cpp" />
     <ClCompile Include="Items.cpp" />
+    <ClCompile Include="Log_Time.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="QuyetVjpPro%27sCafeOfficial.cpp" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="Employee.h" />
     <ClInclude Include="FunctionInterface.h" />
     <ClInclude Include="Items.h" />
+    <ClInclude Include="Log_Time.h" />
     <ClInclude Include="Person.h" />
   </ItemGroup>
   <ItemGroup>
