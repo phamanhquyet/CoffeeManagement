@@ -75,9 +75,19 @@ void Items::setIdBill(string idBill)
 	this->idBill = idBill;
 }
 
+long Items::total()
+{
+	return getAmount()*getPrice();
+}
+
 void Items::display()
 {
 
 	cout<< "| "<<setw(5) << left << idOfItem << "\t\t\| " << setw(10) << nameOfItem << "\t| " << setw(10) << price << "\t|" << endl;
 	
+}
+
+void Items::displaybyBill()
+{
+	cout << "| " << setw(5) << left << this->idBill << "\t\t\ " << "| " << setw(5) << left << idOfItem << "\t\t\| " << setw(10) << nameOfItem << "\t| " << setw(10) << price << "\t|" << setw(5) << left << this->amount << "\t\t\| ";
 }

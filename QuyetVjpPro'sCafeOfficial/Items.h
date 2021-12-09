@@ -29,7 +29,9 @@ public:
 	void setPrice(int price);
 	void setAmount(long amount);
 	void setIdBill(string idBill);
+	long total();
 	//method
 	void display();
+	void displaybyBill();
 };
 

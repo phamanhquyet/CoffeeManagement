@@ -2,14 +2,17 @@
 #include "Person.h"
 #include "FunctionInterface.h"
 #include <vector>
-class Employee:Person
+#include"Items.h"
+#include"DataItems.h"
+class Employee:Person,public DataItems
 {
 private:
 	string idOfEmployee;
 	long basic_salary;
 	int bonus;
 	Person p;
-
+	vector<Items> Bill;
+	
 public:
 	Employee();
 	Employee(string idOfEmployee, string name, string address, string phone_number, int day, int month, int year, long basic_salary, int bonus);
@@ -22,7 +25,9 @@ public:
 	void setBonus(int bonus);
 	void input();
 	void display();
-	//tinh tien
-	//....
+	//----------------Bill----------------------//
+	void addBill(string nameOfItem, long amount, string idBill);
+	long totalBill(string idBill);
+	void displayBill(string idBill);
 };
 

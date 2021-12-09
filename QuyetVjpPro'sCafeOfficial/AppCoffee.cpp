@@ -73,6 +73,7 @@ void AppCoffee::showCaseAdmin()
 			break;
 		case '5':
 			listEmp.display();
+			system("pause");
 			break;
 		case '6':
 			break;

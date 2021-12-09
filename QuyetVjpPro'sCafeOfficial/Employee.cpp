@@ -60,6 +60,40 @@ void Employee::display()
 	cout << "| " << setw(5) << left << idOfEmployee << "\t\t\| " << setw(15) << p.getName() << "\t| " << setw(15) << p.getAddress() << "\t| " << setw(15)<<p.getPhoneNumber() << "\t| " <<setw(5) << p.getDateOfBirth().getDay() << "\t| " << setw(5) << p.getDateOfBirth().getMonth()<< "\t| "<<setw(5)<< p.getDateOfBirth().getYear()<<"\t| " << setw(10)<<basic_salary<<"\t| " << setw(10) << bonus << "\t| "<<endl;
 }
 
+void Employee::addBill(string nameOfItem, long amount, string idBill)
+{
+	int vt = DataItems::findByName(nameOfItem);
+	if (vt == -1) {
+		return;
+	}
+	string idOfItem = DataItems::getListItems().at(vt).getIdOfItem();
+	int price = DataItems::getListItems().at(vt).getPrice();
+	Items tmp(idOfItem,nameOfItem,price,amount,idBill);
+	Bill.push_back(tmp);
+	 
+	
+}
+
+long Employee::totalBill(string idBill)
+{
+	long sum = 0;
+	for (int i = 0; i < Bill.size(); i++) {
+		if (idBill.compare(Bill.at(i).getIdBill()) == 0) {
+			sum += Bill.at(i).total();
+		}
+	}
+	return sum;
+}
+
+void Employee::displayBill(string idBill)
+{
+	for (int i = 0; i < Bill.size(); i++) {
+		if (idBill.compare(Bill.at(i).getIdBill()) == 0) {
+			Bill.at(i).displaybyBill(); cout << endl;
+		}
+	}
+}
+
 
 
 
