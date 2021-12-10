@@ -3,4 +3,6 @@
 3,bac xiu,10000
 4,pepsi,10000
 5,nuoc suoi,5000
-6,banh quy,3000
+6,can sa,500
+7,12345,90000
+8,banh gao,100000

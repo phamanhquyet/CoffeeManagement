@@ -9,14 +9,14 @@ Items::Items()
 	this->idBill = "";
 }
 
-Items::Items(string idOfItem, string nameOfItem, int price)
+Items::Items(string idOfItem, string nameOfItem, long price)
 {
 	this->idOfItem = idOfItem;
 	this->nameOfItem = nameOfItem;
 	this->price = price;
 }
 
-Items::Items(string idOfItem, string nameOfItem, int price, long amount, string idBill)
+Items::Items(string idOfItem, string nameOfItem, long price, long amount, string idBill)
 {
 	this->idOfItem = idOfItem;
 	this->nameOfItem = nameOfItem;

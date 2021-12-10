@@ -63,6 +63,7 @@ void AppCoffee::showCaseAdmin()
 		case '1':
 			listEmp.insert();
 			break;
+			
 		case '2':
 			listEmp.deleteEmployee();
 			break;
@@ -76,14 +77,23 @@ void AppCoffee::showCaseAdmin()
 			system("pause");
 			break;
 		case '6':
+			listItems.insertAnItem();
+			system("pause");
 			break;
 		case '7':
+			listItems.DeleteAnItem();
+			system("pause");
 			break;
 		case '8':
+			listItems.EditAnItem();
+			system("pause");
 			break;
 		case '9':
+			listItems.HashDisplayByName();
+			system("pause");
 			break;
 		case '0':
+			listItems.display();
 			break;
 		case 'e':
 			return;
@@ -96,12 +106,47 @@ void AppCoffee::showCaseAdmin()
 
 void AppCoffee::showCaseEmployee()
 {
-	cout << "+-------------------------------------MENU EMPLOYEE------------------------------------+\n";
-	cout << "|\t\t\t\t1. Them Item" << setw(44) << "|\n";
-	cout << "|\t\t\t\t2. Xoa Item" << setw(45) << "|\n";
-	cout << "|\t\t\t\t3. Sua Item" << setw(45) << "|\n";
-	cout << "|\t\t\t\t4. Tim Item" << setw(45) << "|\n";
-	cout << "|\t\t\t\t5. Danh Sach Item" << setw(39) << "|\n";
-	cout << "+-------------------------------------------------------------------------------------+\n";
+	char key;
+	while (true) {
+		cout << "+-------------------------------------MENU EMPLOYEE------------------------------------+\n";
+		cout << "|\t\t\t\t1. Them Item" << setw(44) << "|\n";
+		cout << "|\t\t\t\t2. Xoa Item" << setw(45) << "|\n";
+		cout << "|\t\t\t\t3. Sua Item" << setw(45) << "|\n";
+		cout << "|\t\t\t\t4. Tim Item" << setw(45) << "|\n";
+		cout << "|\t\t\t\t5. Danh Sach Item" << setw(39) << "|\n";
+		cout << "+-------------------------------------------------------------------------------------+\n";
+		cout << "\nINPUT BUTTON: ";
 
+		cin >> key;
+		switch (key)
+		{
+		case '1': {
+			listItems.insertAnItem();
+			system("pause");
+			break;
+		}
+		case '2':
+			listItems.DeleteAnItem();
+			system("pause");
+			break;
+		case '3':
+			listItems.EditAnItem();
+			system("pause");
+			break;
+		case '4':
+			listItems.HashDisplayByName();
+			system("pause");
+			break;
+		case '5':
+			listItems.display();
+			system("pause");
+			break;
+		case 'e':
+			return;
+		default:
+			break;
+		}
+		system("cls");
+	}
+	
 }

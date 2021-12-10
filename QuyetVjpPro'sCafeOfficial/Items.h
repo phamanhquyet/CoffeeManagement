@@ -15,8 +15,8 @@ private:
 	string idBill;
 public:
 	Items();
-	Items(string idOfItem, string nameOfItem, int price);
-	Items(string idOfItem, string nameOfItem, int price, long amount, string idBill);
+	Items(string idOfItem, string nameOfItem, long price);
+	Items(string idOfItem, string nameOfItem, long price, long amount, string idBill);
 	//getter
 	string getIdOfItem();
 	string getNameOfItem();

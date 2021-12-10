@@ -25,12 +25,49 @@ void DataItems::readFile()
 
 }
 
-void DataItems::insert(string nameOfItem, int price)
+void DataItems::insert(string nameOfItem, long price)
 {
 	string idOfItem = to_string(generateID);
 	Items it(idOfItem,nameOfItem,price);
 	listItems.push_back(it);
 }
+
+void DataItems::Delete(string nameOfItem)
+{
+	int position = -1;
+	for (int i = 0; (unsigned)i < listItems.size(); i++) {
+		if (listItems.at(i).getNameOfItem().compare(nameOfItem) == 0) {
+			position = i;
+			break;
+		}
+	}
+	if (position > -1) {
+		listItems.erase(listItems.begin() + position);
+		cout << "Success!" << endl;
+	}
+	else {
+		cout << "Can't find this item!" << endl;;
+	}
+}
+
+//void DataItems::edit(string nameOfItem, long price)
+//{
+//	int position = -1;
+//	for (int i = 0; i < listItems.size(); i++) {
+//		if (listItems.at(i).getNameOfItem().compare(nameOfItem) == 0 && listItems.at(i).getPrice() == price) {
+//			position = i;
+//			break;
+//		}
+//	}
+//	/*if (position > -1) {
+//		
+//	}*/
+//	listItems.at(position).setNameOfItem(nameOfItem);
+//	listItems.at(position).setPrice(price);
+//	/*else {
+//		cout << "Can't find your item! " << endl;
+//	}*/
+//}
 
 void DataItems::updateFIle()
 {
@@ -57,7 +94,7 @@ void DataItems::display()
 int DataItems::findById(string id)
 {
 	int posOfId = -1;
-	for (int i = 0; i < listItems.size(); i++) {
+	for (int i = 0; (unsigned)i < listItems.size(); i++) {
 		if (listItems.at(i).getIdOfItem().compare(id) == 0) {
 			posOfId = i;
 			break;
@@ -74,7 +111,7 @@ vector<Items> DataItems::getListItems()
 int DataItems::findByName(string nameOfItem)
 {
 	int posOfName = -1;
-	for (int i = 0; i < listItems.size(); i++) {
+	for (int i = 0; (unsigned)i < listItems.size(); i++) {
 		if (listItems.at(i).getNameOfItem().compare(nameOfItem) == 0){
 			posOfName = i;
 			break;
@@ -83,14 +120,18 @@ int DataItems::findByName(string nameOfItem)
 	return posOfName;
 }
 
-void DataItems::HashDisplayByName(string name)
+void DataItems::HashDisplayByName()
 {
+	string name;
+	cout << "Enter the name of item you want to find: ";
+	cin.ignore();
+	getline(cin,name);
 	bool flag = false;
 	cout << "-------------------------------------------------" << endl;
 	cout << "| Id\t\t| Name\t\t| Price\t\t|" << endl;
 
 	cout << "-------------------------------------------------" << endl;
-	for (int i = 0; i < listItems.size(); i++) {
+	for (int i = 0; (unsigned)i < listItems.size(); i++) {
 		if (listItems.at(i).getNameOfItem().find(name) != std::string::npos) {
 			listItems.at(i).display();
 			flag = true;
@@ -101,6 +142,60 @@ void DataItems::HashDisplayByName(string name)
 	}
 	cout << "-------------------------------------------------" << endl;
 }
+
+void DataItems::insertAnItem()
+{
+	string nameOfItem;
+	long price;
+	cout << "Enter name of item: ";
+	cin.ignore();
+	getline(cin, nameOfItem);
+	fflush(stdin);
+	cout << "Enter price: ";
+	cin >> price;
+	insert(nameOfItem, price);
+	updateFIle();
+}
+
+void DataItems::DeleteAnItem()
+{
+	string nameOfItem;
+	cout << "Enter name of Item: ";
+	cin.ignore();
+	getline(cin, nameOfItem);
+	fflush(stdin);
+	Delete(nameOfItem);
+	updateFIle();
+}
+
+void DataItems::EditAnItem()
+{
+	string nameOfItem;
+	string nameOfItemWantToEdit;
+	long priceWantToEdit;
+	cout << "Enter name of item: ";
+	cin.ignore();
+	getline(cin, nameOfItem);
+	int pos = findByName(nameOfItem);
+	if (pos > -1) {
+		cout << "Enter name you want to edit to: ";
+		getline(cin, nameOfItemWantToEdit);
+		cout << "Enter price you want to edit to: ";
+		cin >> priceWantToEdit;
+		listItems.at(pos).setNameOfItem(nameOfItemWantToEdit);
+		listItems.at(pos).setPrice(priceWantToEdit);
+		//edit(nameOfItemWantToEdit, priceWantToEdit);
+		cout << "Success!" << endl;
+		updateFIle();
+	}
+	else {
+		cout << "Can't find this item!"<<endl;
+		return;
+	}
+	
+
+}
+
 
 DataItems::~DataItems()
 {

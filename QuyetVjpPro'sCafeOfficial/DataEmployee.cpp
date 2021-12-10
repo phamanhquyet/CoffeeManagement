@@ -33,7 +33,6 @@ void DataEmployee::readFile()
         listEmployee.push_back(emp);
     }
     fi.close();
-    
 }
 
 
