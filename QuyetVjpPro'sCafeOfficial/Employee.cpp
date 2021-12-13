@@ -60,8 +60,17 @@ void Employee::display()
 	cout << "| " << setw(5) << left << idOfEmployee << "\t\t\| " << setw(15) << p.getName() << "\t| " << setw(15) << p.getAddress() << "\t| " << setw(15)<<p.getPhoneNumber() << "\t| " <<setw(5) << p.getDateOfBirth().getDay() << "\t| " << setw(5) << p.getDateOfBirth().getMonth()<< "\t| "<<setw(5)<< p.getDateOfBirth().getYear()<<"\t| " << setw(10)<<basic_salary<<"\t| " << setw(10) << bonus << "\t| "<<endl;
 }
 
-void Employee::addBill(string nameOfItem, long amount, string idBill)
+void Employee::createBill()
 {
+	string nameOfItem, idBill;
+	long amount;
+	cin.ignore();
+	cout << "Input ID Bill: ";
+	getline(cin, idBill);
+	cout << "Input NameOfItem: ";
+	getline(cin, nameOfItem);
+	cout << "Input Amount: ";
+	cin >> amount;
 	int vt = DataItems::findByName(nameOfItem);
 	if (vt == -1) {
 		return;
@@ -70,8 +79,7 @@ void Employee::addBill(string nameOfItem, long amount, string idBill)
 	int price = DataItems::getListItems().at(vt).getPrice();
 	Items tmp(idOfItem,nameOfItem,price,amount,idBill);
 	Bill.push_back(tmp);
-	 
-	
+	exportBill(idBill);
 }
 
 long Employee::totalBill(string idBill)
@@ -93,6 +101,29 @@ void Employee::displayBill(string idBill)
 		}
 	}
 }
+
+void Employee::readBill()
+{
+}
+
+void Employee::exportBill(string idBill)
+{
+	ofstream fo("Bill.txt");
+	for (int i = 0; i < Bill.size(); i++) {
+		if (idBill.compare(Bill.at(i).getIdBill()) == 0) {
+			Bill.at(i).displaybyBill(); cout << endl;
+			fo << Bill.at(i).getIdBill() << "," << Bill.at(i).getNameOfItem() << "," << Bill.at(i).getPrice() << "," << Bill.at(i).getAmount() << "," << totalBill(Bill.at(i).getIdBill()) << endl;
+		}
+	}
+	fo.close();
+}
+
+Employee::~Employee()
+{
+	Bill.clear();
+}
+
+
 
 
 

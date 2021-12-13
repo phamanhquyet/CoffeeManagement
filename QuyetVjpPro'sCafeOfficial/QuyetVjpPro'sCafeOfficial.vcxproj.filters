@@ -133,5 +133,11 @@
     <Text Include="Duc.txt">
       <Filter>Header Files\Data</Filter>
     </Text>
+    <Text Include="Bill.txt">
+      <Filter>Header Files\Data</Filter>
+    </Text>
+    <Text Include="exportBill.txt">
+      <Filter>Header Files\Data</Filter>
+    </Text>
   </ItemGroup>
 </Project>

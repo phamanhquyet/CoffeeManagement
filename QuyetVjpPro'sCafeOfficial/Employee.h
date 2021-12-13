@@ -26,8 +26,11 @@ public:
 	void input();
 	void display();
 	//----------------Bill----------------------//
-	void addBill(string nameOfItem, long amount, string idBill);
+	void createBill();
 	long totalBill(string idBill);
 	void displayBill(string idBill);
+	void readBill();
+	void exportBill(string idBill);
+	~Employee();
 };
 

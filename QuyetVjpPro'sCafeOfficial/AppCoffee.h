@@ -7,6 +7,8 @@
 #include "DataEmployee.h"
 #include "Log_Time.h"
 #include "DataItems.h"
+#include "Items.h"
+#include "Employee.h"
 using namespace std;
 class AppCoffee
 {
@@ -16,6 +18,8 @@ private:
 	DataEmployee listEmp;
 	DataItems listItems;
 	Log_Time log;
+	Items it;
+	Employee emp;
 public:
 	void login();
 	void showCaseAdmin();

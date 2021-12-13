@@ -44,17 +44,17 @@ void AppCoffee::showCaseAdmin()
 	while (true)
 	{
 		cout << "+-------------------------------------MENU ADMIN--------------------------------------+\n";
-		cout << "|\t\t\t\t1. Them Nhan Vien" << setw(39) << "|\n";
-		cout << "|\t\t\t\t2. Xoa Nhan Vien" << setw(40) << "|\n";
-		cout << "|\t\t\t\t3. Sua Nhan Vien" << setw(40) << "|\n";
-		cout << "|\t\t\t\t4. Tim Kiem Nhan Vien" << setw(35) << "|\n";
-		cout << "|\t\t\t\t5. Danh Sach Nhan Vien" << setw(34) << "|\n";
-		cout << "|\t\t\t\t6. Them Item" << setw(44) << "|\n";
-		cout << "|\t\t\t\t7. Xoa Item" << setw(45) << "|\n";
-		cout << "|\t\t\t\t8. Sua Item" << setw(45) << "|\n";
-		cout << "|\t\t\t\t9. Tim Item" << setw(45) << "|\n";
-		cout << "|\t\t\t\t0. Danh Sach Item" << setw(39) << "|\n";
-		cout << "|\t\t\t\te. Thoat" << setw(48) << "|\n";
+		cout << "|                               1. Them Nhan Vien                                     |\n";
+		cout << "|                               2. Xoa Nhan Vien                                      |\n";
+		cout << "|                               3. Sua Nhan Vien                                      |\n";
+		cout << "|                               4. Tim Kiem Nhan Vien                                 |\n";
+		cout << "|                               5. Danh Sach Nhan Vien                                |\n";
+		cout << "|                               6. Them Item                                          |\n";
+		cout << "|                               7. Xoa Item                                           |\n";
+		cout << "|                               8. Sua Item                                           |\n";
+		cout << "|                               9. Tim Item                                           |\n";
+		cout << "|                               0. Danh Sach Item                                     |\n";
+		cout << "|                               e. Thoat                                              |\n";
 		cout << "+-------------------------------------------------------------------------------------+\n";
 		cout << "\nINPUT BUTTON: ";
 		cin >> key;
@@ -108,20 +108,20 @@ void AppCoffee::showCaseEmployee()
 {
 	char key;
 	while (true) {
-		cout << "+-------------------------------------MENU EMPLOYEE------------------------------------+\n";
-		cout << "|\t\t\t\t1. Them Item" << setw(44) << "|\n";
-		cout << "|\t\t\t\t2. Xoa Item" << setw(45) << "|\n";
-		cout << "|\t\t\t\t3. Sua Item" << setw(45) << "|\n";
-		cout << "|\t\t\t\t4. Tim Item" << setw(45) << "|\n";
-		cout << "|\t\t\t\t5. Danh Sach Item" << setw(39) << "|\n";
+		cout << "+-------------------------------------MENU ADMIN--------------------------------------+\n";
+		cout << "|                               1. Them & Tinh Bill                                   |\n";
+		cout << "|                               2. Xoa Bill                                           |\n";
+		cout << "|                               3. Sua Bill                                           |\n";
+		cout << "|                               4. Tim Kiem Bill                                      |\n";
+		cout << "|                               5. Danh Sach Bill                                     |\n";
+		cout << "|                               e. Thoat                                              |\n";
 		cout << "+-------------------------------------------------------------------------------------+\n";
 		cout << "\nINPUT BUTTON: ";
-
 		cin >> key;
 		switch (key)
 		{
 		case '1': {
-			listItems.insertAnItem();
+			emp.addBill();
 			system("pause");
 			break;
 		}
