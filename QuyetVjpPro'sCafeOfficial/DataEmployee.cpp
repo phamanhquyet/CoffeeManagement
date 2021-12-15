@@ -35,13 +35,31 @@ void DataEmployee::readFile()
     fi.close();
 }
 
+bool DataEmployee::checkId(string id)
+{
+    bool flag = false;
+    for (auto i = 0; i < listEmployee.size(); i++) {
+        if (listEmployee.at(i).getIdOfEmployee().compare(id) == 0) {
+            this->generateId += 1;
+            flag = true;
+            break;
+        }
+    }
+    return flag;
+}
+
 
 void DataEmployee::insert()
 {
     string name, address, phone_number;
     int day, month, year, bonus;
     long basic_salary;
+    this->generateId = 1;
+    plus1ToId:
     string idOfEmployee = to_string(generateId);
+    if (checkId(idOfEmployee)) {
+        goto plus1ToId;
+    }
     cin.ignore();
     cout << "Input Name: ";
     getline(cin, name);
@@ -60,6 +78,18 @@ void DataEmployee::insert()
     updateFile();
 }
 
+void DataEmployee::Delete(string id)
+{
+    int pos = findById(id);
+    if (pos == -1){
+        cout<<"can't find this employee"<<endl;
+        return;
+    }
+    listEmployee.erase(listEmployee.begin() + pos);
+    this->generateId += 1;
+
+}
+
 void DataEmployee::updateFile()
 {
     ofstream fo("ListEmployee.txt");
@@ -71,6 +101,48 @@ void DataEmployee::updateFile()
             << listEmployee.at(i).getBonus()<<endl;
     }
     fo.close();
+}
+
+void DataEmployee::editAnEmployee()
+{
+    string oldID;
+    string IdOfEmployee;
+    string nameOfEmployeeWantToEdit;
+    string addressWantToEdit;
+    string phoneNumberOfEmployeeWantToEdit;
+    int day, month, year;
+    long basicSalary;
+    int bonus;
+    cout << "Enter id of employee: ";
+    cin.ignore();
+    getline(cin, IdOfEmployee);
+
+    int pos = findById(IdOfEmployee);
+    if (pos > -1) {
+        oldID = listEmployee.at(pos).getIdOfEmployee();
+        bonus = listEmployee.at(pos).getBonus();
+        Delete(IdOfEmployee);
+        cout << "Enter name you want to edit to: ";
+        getline(cin, nameOfEmployeeWantToEdit);
+        handleString(nameOfEmployeeWantToEdit);
+        cout << "Enter address you want to edit to: ";
+        getline(cin, addressWantToEdit);
+        handleString(addressWantToEdit);
+        cout << "Enter phone number you want to edit to: ";
+        getline(cin, phoneNumberOfEmployeeWantToEdit);
+        cout << "Enter Day-Month-Year you want to edit to: ";
+        cin >> day >> month >> year;
+        cout << "Enter basic salary you want to edit to: ";
+        cin >> basicSalary;
+        Employee emp(oldID, nameOfEmployeeWantToEdit, addressWantToEdit,phoneNumberOfEmployeeWantToEdit, day, month, year, basicSalary, bonus);
+        listEmployee.insert(listEmployee.begin() + pos, emp);
+        
+        cout << "Success!" << endl;
+        updateFile();
+    }
+    else {
+        cout << "Can't find this employee!" << endl;
+    }
 }
 
 void DataEmployee::deleteEmployee()
@@ -156,6 +228,51 @@ void DataEmployee::HashDisplayByName()
         cout << "| NULL\t\t| NULL\t\t\t| NULL\t\t\t| NULL\t\t\t| NULL\t| NULL\t| NULL\t| NULL\t\t| NULL\t\t|" << endl;
     }
     cout << "+---------------+-----------------------+-----------------------+-----------------------+-------+-------+-------+---------------+---------------+" << endl;
+}
+
+void DataEmployee::handleString(string& str)
+{
+    while (str[0] == ' ')
+    {
+        str.erase(str.begin() + 0);
+    }
+    while (str[str.length() - 1] == ' ')
+    {
+        str.erase(str.begin() + str.length() - 1);
+    }
+    for (int i = 0; i < str.length(); i++)
+    {
+
+        if (str[i] == ' ' && str[i + 1] == ' ')
+        {
+            str.erase(str.begin() + i);
+            i--;
+        }
+    }
+    for (int i = 0; i < str.length(); i++) {
+        //65 90
+        if (str[i] >= 65 && str[i] <= 90)
+            str[i] += 32;
+    }
+    if (str[0] != ' ')
+    {
+        if (str[0] >= 97 && str[0] <= 122)
+        {
+            str[0] -= 32;
+        }
+
+    }
+    for (int i = 0; i < str.length() - 1; i++)
+    {
+        if (str[i] == ' ' && str[i + 1] != ' ')
+        {
+
+            if (str[i + 1] >= 97 && str[i + 1] <= 122)
+            {
+                str[i + 1] -= 32;
+            }
+        }
+    }
 }
 
 DataEmployee::~DataEmployee()

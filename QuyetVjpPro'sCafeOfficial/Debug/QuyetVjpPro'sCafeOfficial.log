@@ -1,4 +1,10 @@
-﻿  Items.cpp
-D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\Items.cpp(86,46): warning C4129: '|': unrecognized character escape sequence
-D:\Users\mimii\source\repos\CoffeeManagement\QuyetVjpPro'sCafeOfficial\Items.cpp(95,54): warning C4129: '|': unrecognized character escape sequence
-  QuyetVjpPro'sCafeOfficial.vcxproj -> D:\Users\mimii\source\repos\CoffeeManagement\Debug\QuyetVjpPro'sCafeOfficial.exe
+﻿  DataEmployee.cpp
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(41,24): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(155,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(185,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(197,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(221,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(243,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(252,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(265,23): warning C4018: '<': signed/unsigned mismatch
+  QuyetVjpPro'sCafeOfficial.vcxproj -> E:\VSStudio\CoffeeManagement\Debug\QuyetVjpPro'sCafeOfficial.exe

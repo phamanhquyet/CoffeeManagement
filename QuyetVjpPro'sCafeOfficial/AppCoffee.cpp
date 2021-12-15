@@ -68,9 +68,12 @@ void AppCoffee::showCaseAdmin()
 			listEmp.deleteEmployee();
 			break;
 		case '3':
+			listEmp.editAnEmployee();
+			system("pause");
 			break;
 		case '4':
 			listEmp.HashDisplayByName();
+			system("pause");
 			break;
 		case '5':
 			listEmp.display();
@@ -108,12 +111,14 @@ void AppCoffee::showCaseEmployee()
 {
 	char key;
 	while (true) {
-		cout << "+-------------------------------------MENU ADMIN--------------------------------------+\n";
+		cout << "\t\t\t\tQuyetVjpPro's Cafe Menu"<<endl;
+		listItems.display();
+		cout << "+-------------------------------------MENU EMPLOYEE-----------------------------------+\n";
 		cout << "|                               1. Them & Tinh Bill                                   |\n";
 		cout << "|                               2. Xoa Bill                                           |\n";
 		cout << "|                               3. Sua Bill                                           |\n";
 		cout << "|                               4. Tim Kiem Bill                                      |\n";
-		cout << "|                               5. Danh Sach Bill                                     |\n";
+		cout << "|                               5. Hien thi Bill                                      |\n";
 		cout << "|                               e. Thoat                                              |\n";
 		cout << "+-------------------------------------------------------------------------------------+\n";
 		cout << "\nINPUT BUTTON: ";
@@ -121,7 +126,7 @@ void AppCoffee::showCaseEmployee()
 		switch (key)
 		{
 		case '1': {
-			emp.addBill();
+			emp.createBill();
 			system("pause");
 			break;
 		}
@@ -137,10 +142,15 @@ void AppCoffee::showCaseEmployee()
 			listItems.HashDisplayByName();
 			system("pause");
 			break;
-		case '5':
-			listItems.display();
+		case '5':{
+			string id;
+			cout << "Enter id of bill: ";
+			cin.ignore();
+			getline(cin, id);
+			emp.exportBill(id);
 			system("pause");
 			break;
+		}
 		case 'e':
 			return;
 		default:

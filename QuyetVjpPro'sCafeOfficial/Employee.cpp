@@ -69,12 +69,14 @@ void Employee::createBill()
 	getline(cin, idBill);
 	cout << "Input NameOfItem: ";
 	getline(cin, nameOfItem);
-	cout << "Input Amount: ";
-	cin >> amount;
 	int vt = DataItems::findByName(nameOfItem);
 	if (vt == -1) {
+		cout << "Can't find this item!" << endl;
 		return;
 	}
+	cout << "Input Amount: ";
+	cin >> amount;
+	
 	string idOfItem = DataItems::getListItems().at(vt).getIdOfItem();
 	int price = DataItems::getListItems().at(vt).getPrice();
 	Items tmp(idOfItem,nameOfItem,price,amount,idBill);
