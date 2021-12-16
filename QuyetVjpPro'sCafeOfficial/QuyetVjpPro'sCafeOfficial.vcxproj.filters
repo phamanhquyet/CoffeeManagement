@@ -130,7 +130,7 @@
     <Text Include="ListAccount.txt">
       <Filter>Header Files\Data</Filter>
     </Text>
-    <Text Include="Duc.txt">
+    <Text Include="Log.txt">
       <Filter>Header Files\Data</Filter>
     </Text>
     <Text Include="Bill.txt">

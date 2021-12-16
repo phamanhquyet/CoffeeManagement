@@ -11,6 +11,7 @@ public:
 	void insert(string nameOfItem, long price);
 	void Delete(string nameOfItem);
 	//void edit(string nameOfItem, long price);
+	bool checkId(string id);
 	void updateFIle();
 	void display();
 	int findById(string id);
@@ -20,6 +21,9 @@ public:
 	void insertAnItem();
 	void DeleteAnItem();
 	void EditAnItem();
+	int getPartition(vector<Items>& givenArray, int low, int high);
+	void quickSort(vector<Items>& givenArray, int low, int high);
+	void Mysort();
 	//destructor
 	~DataItems();
 };

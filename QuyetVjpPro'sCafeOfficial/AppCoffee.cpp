@@ -1,7 +1,24 @@
 #include "AppCoffee.h"
 
+void AppCoffee::readFileLog()
+{
+	ifstream fi("Log.txt");
+	while (fi.good())
+	{
+		string log;
+		getline(fi,log,'\n');
+		if (log == "") {
+			break;
+		}
+		LogOfSystem.push_back(log);
+	}
+	fi.close();
+	
+}
+
 void AppCoffee::login()
 {
+	readFileLog();
 	string username;
 	string password;
 	cout << "INPUT USERNAME: ";
@@ -22,8 +39,17 @@ void AppCoffee::login()
 		return;
 	}
 	else {
+	    ofstream fo("Log.txt");
+		string time = log.Time();
 		cout << "WELCOME \"" << listAcc.getListAccount().at(index).getUsername() << "\" TO QUYETVJPPRO'S CAFE\n";
-		cout << "TIME LOGIN: " << log.Time() << endl;
+		cout << "TIME LOGIN: " << time << endl;
+		string str1 = "User " + listAcc.getListAccount().at(index).getUsername() + " login into system at " + time;
+		LogOfSystem.push_back(str1);
+		cout << LogOfSystem.size();
+		for (int i = 0; i < LogOfSystem.size(); i++) {
+			fo << LogOfSystem.at(i)<<endl;
+		}
+		fo.close();
 	}
 	if (listAcc.getListAccount().at(index).getPermisstion() == "admin") {
 		cout << "PERMISSION: " << listAcc.getListAccount().at(index).getPermisstion() << endl;;
@@ -62,10 +88,12 @@ void AppCoffee::showCaseAdmin()
 		{
 		case '1':
 			listEmp.insert();
+			system("pause");
 			break;
 			
 		case '2':
 			listEmp.deleteEmployee();
+			system("pause");
 			break;
 		case '3':
 			listEmp.editAnEmployee();
@@ -97,6 +125,7 @@ void AppCoffee::showCaseAdmin()
 			break;
 		case '0':
 			listItems.display();
+			system("pause");
 			break;
 		case 'e':
 			return;

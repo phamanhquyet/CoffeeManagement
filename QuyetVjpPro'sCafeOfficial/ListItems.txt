@@ -3,7 +3,12 @@
 3,bac xiu,10000
 4,pepsi,10000
 5,nuoc suoi,5000
-6,can sa,500
+6,ga ran,200000
 7,12345,90000
 8,banh gao,100000
 9,ABC,100000
+10,cafe,1000
+11,soda,10
+12,nuoc cam,100000
+13,ma tuy da,1000000
+14,can sa,10000000

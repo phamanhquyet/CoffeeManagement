@@ -57,7 +57,13 @@ void Employee::input()
 
 void Employee::display()
 {
-	cout << "| " << setw(5) << left << idOfEmployee << "\t\t\| " << setw(15) << p.getName() << "\t| " << setw(15) << p.getAddress() << "\t| " << setw(15)<<p.getPhoneNumber() << "\t| " <<setw(5) << p.getDateOfBirth().getDay() << "\t| " << setw(5) << p.getDateOfBirth().getMonth()<< "\t| "<<setw(5)<< p.getDateOfBirth().getYear()<<"\t| " << setw(10)<<basic_salary<<"\t| " << setw(10) << bonus << "\t| "<<endl;
+	cout << "| " << setw(5) << left << idOfEmployee << "\t\t\| "
+		<< setw(15) << p.getName() << "\t| "
+		<< setw(15) << p.getAddress() << "\t| " 
+		<< setw(15)<<p.getPhoneNumber() << "\t| " 
+		<< p.getDateOfBirth().getDay() << "/" << p.getDateOfBirth().getMonth()<< "/" << p.getDateOfBirth().getYear()<<"\t\t| " 
+		<< setw(10)<<basic_salary<<"\t| " 
+		<< setw(10) << bonus << "\t| "<<endl;
 }
 
 void Employee::createBill()

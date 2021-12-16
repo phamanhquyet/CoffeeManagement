@@ -69,6 +69,19 @@ void DataItems::Delete(string nameOfItem)
 //	}*/
 //}
 
+bool DataItems::checkId(string id)
+{
+	bool flag = false;
+	for (auto i = 0; i < listItems.size(); i++) {
+		if (listItems.at(i).getIdOfItem().compare(id) == 0) {
+			this->generateID += 1;
+			flag = true;
+			break;
+		}
+	}
+	return flag;
+}
+
 void DataItems::updateFIle()
 {
 	ofstream fo("ListItems.txt");
@@ -145,6 +158,12 @@ void DataItems::HashDisplayByName()
 
 void DataItems::insertAnItem()
 {
+	this->generateID = 1;
+	plusToId:
+	string idOfItem = to_string(generateID);
+	if (checkId(idOfItem)) {
+		goto plusToId;
+	}
 	string nameOfItem;
 	long price;
 	cout << "Enter name of item: ";
@@ -154,6 +173,7 @@ void DataItems::insertAnItem()
 	cout << "Enter price: ";
 	cin >> price;
 	insert(nameOfItem, price);
+	Mysort();
 	updateFIle();
 }
 
@@ -194,6 +214,35 @@ void DataItems::EditAnItem()
 	}
 	
 
+}
+
+int DataItems::getPartition(vector<Items>& givenArray, int low, int high)
+{
+	int pivot = stoi(givenArray[high].getIdOfItem());
+	int i = (low - 1);
+	for (int j = low; j <= high; j++) {
+		int tmp = stoi(givenArray[j].getIdOfItem());
+		if (tmp < pivot) {
+			i++;
+			swap(givenArray[i], givenArray[j]);
+		}
+	}
+	swap(givenArray[i + 1], givenArray[high]);
+	return (i + 1);
+}
+
+void DataItems::quickSort(vector<Items>& givenArray, int low, int high)
+{
+	if (low < high) {
+		int pi = getPartition(givenArray, low, high);
+		quickSort(givenArray, low, pi - 1);
+		quickSort(givenArray, pi + 1, high);
+	}
+}
+
+void DataItems::Mysort()
+{
+	quickSort(this->listItems, 0, listItems.size() - 1);
 }
 
 

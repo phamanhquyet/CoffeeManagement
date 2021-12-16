@@ -75,6 +75,7 @@ void DataEmployee::insert()
     cin >> bonus;
     Employee emp(idOfEmployee, name, address, phone_number, day, month, year, basic_salary, bonus);
     listEmployee.push_back(emp);
+    Mysort();
     updateFile();
 }
 
@@ -169,7 +170,7 @@ void DataEmployee::display()
 {
     cout << setw(100) << "List of employees are working at Quyet Vjp Pro's Cafe" << endl;
     cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-    cout << "| Id\t\t| Name\t\t\t| Address\t\t| Phone Number\t\t| Day\t| Month\t| Year\t| Basic Salary\t| Bonus\t\t|" << endl;
+    cout << "| Id\t\t| Name\t\t\t| Address\t\t| Phone Number\t\t| Date Of Birth\t\t| Basic Salary\t| Bonus\t\t|" << endl;
 
     cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
     for (int i = 0; unsigned(i) < listEmployee.size(); i++) {
@@ -216,7 +217,7 @@ void DataEmployee::HashDisplayByName()
     getline(cin, name);
     bool flag = false;
     cout << "+---------------+-----------------------+-----------------------+-----------------------+-------+-------+-------+---------------+---------------+" << endl;
-    cout << "| Id\t\t| Name\t\t\t| Address\t\t| Phone Number\t\t| Day\t| Month\t| Year\t| Basic Salary\t| Bonus\t\t|" << endl;
+    cout << "| Id\t\t| Name\t\t\t| Address\t\t| Phone Number\t\t| Date Of Birth\t| Basic Salary\t| Bonus\t\t|" << endl;
     cout << "+---------------+-----------------------+-----------------------+-----------------------+-------+-------+-------+---------------+---------------+" << endl;
     for (int i = 0; i < listEmployee.size(); i++) {
         if (listEmployee.at(i).getPerson().getName().find(name) != string::npos) {
@@ -273,6 +274,35 @@ void DataEmployee::handleString(string& str)
             }
         }
     }
+}
+
+int DataEmployee::getPartition(vector<Employee>& givenArray, int low, int high)
+{
+    int pivot = stoi(givenArray[high].getIdOfEmployee());
+    int i = (low - 1);
+    for (int j = low; j <= high; j++) {
+        int tmp = stoi(givenArray[j].getIdOfEmployee());
+        if (tmp < pivot) {
+            i++;
+            swap(givenArray[i], givenArray[j]);
+        }
+    }
+    swap(givenArray[i + 1], givenArray[high]);
+    return (i + 1);
+}
+
+void DataEmployee::quickSort(vector<Employee>& givenArray, int low, int high)
+{
+    if (low < high) {
+        int pi = getPartition(givenArray, low, high);
+        quickSort(givenArray, low, pi - 1);
+        quickSort(givenArray, pi + 1, high);
+    }
+}
+
+void DataEmployee::Mysort()
+{
+    quickSort(this->listEmployee, 0, listEmployee.size() - 1);
 }
 
 DataEmployee::~DataEmployee()

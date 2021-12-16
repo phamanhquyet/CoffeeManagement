@@ -20,6 +20,9 @@ public:
 	vector<Employee>getListEmployee();
 	void HashDisplayByName();
 	void handleString(string& str);
+	int getPartition(vector<Employee>& givenArray, int low, int high);
+	void quickSort(vector<Employee>& givenArray, int low, int high);
+	void Mysort();
 	//goi toi tinh tien cua Employee (id)
 	//...
 	~DataEmployee();

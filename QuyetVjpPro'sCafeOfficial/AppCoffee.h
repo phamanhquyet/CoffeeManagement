@@ -20,7 +20,9 @@ private:
 	Log_Time log;
 	Items it;
 	Employee emp;
+	vector<string>LogOfSystem;
 public:
+	void readFileLog();
 	void login();
 	void showCaseAdmin();
 	void showCaseEmployee();
