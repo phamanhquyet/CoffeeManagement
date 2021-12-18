@@ -5,8 +5,18 @@ class DataItems
 private:
 	vector<Items>listItems;
 	int generateID = 1;
+	string idTemp;
+	string nameTemp;
+	int indexTemp = -1;
+	string oldName;	
+	string newName;
 public:
 	DataItems();
+	string getIdTemp();
+	string getNameTemp();
+	int getIndexTemp();
+	string getOldName();
+	string getNewNamw();
 	void readFile();
 	void insert(string nameOfItem, long price);
 	void Delete(string nameOfItem);
@@ -20,7 +30,7 @@ public:
 	void HashDisplayByName();
 	void insertAnItem();
 	void DeleteAnItem();
-	void EditAnItem();
+	int EditAnItem();
 	int getPartition(vector<Items>& givenArray, int low, int high);
 	void quickSort(vector<Items>& givenArray, int low, int high);
 	void Mysort();

@@ -5,6 +5,31 @@ DataItems::DataItems()
 	readFile();
 }
 
+string DataItems::getIdTemp()
+{
+	return idTemp;
+}
+
+string DataItems::getNameTemp()
+{
+	return nameTemp;
+}
+
+int DataItems::getIndexTemp()
+{
+	return indexTemp;
+}
+
+string DataItems::getOldName()
+{
+	return oldName;
+}
+
+string DataItems::getNewNamw()
+{
+	return newName;
+}
+
 void DataItems::readFile()
 {
 	ifstream fi("ListItems.txt");
@@ -30,6 +55,7 @@ void DataItems::insert(string nameOfItem, long price)
 	string idOfItem = to_string(generateID);
 	Items it(idOfItem,nameOfItem,price);
 	listItems.push_back(it);
+	this->nameTemp = nameOfItem;
 }
 
 void DataItems::Delete(string nameOfItem)
@@ -38,6 +64,8 @@ void DataItems::Delete(string nameOfItem)
 	for (int i = 0; (unsigned)i < listItems.size(); i++) {
 		if (listItems.at(i).getNameOfItem().compare(nameOfItem) == 0) {
 			position = i;
+			this->nameTemp = nameOfItem;
+			
 			break;
 		}
 	}
@@ -48,6 +76,7 @@ void DataItems::Delete(string nameOfItem)
 	else {
 		cout << "Can't find this item!" << endl;;
 	}
+	this->indexTemp = position;
 }
 
 //void DataItems::edit(string nameOfItem, long price)
@@ -163,7 +192,9 @@ void DataItems::insertAnItem()
 	string idOfItem = to_string(generateID);
 	if (checkId(idOfItem)) {
 		goto plusToId;
+		
 	}
+	this->idTemp = idOfItem;
 	string nameOfItem;
 	long price;
 	cout << "Enter name of item: ";
@@ -188,7 +219,7 @@ void DataItems::DeleteAnItem()
 	updateFIle();
 }
 
-void DataItems::EditAnItem()
+int DataItems::EditAnItem()
 {
 	string nameOfItem;
 	string nameOfItemWantToEdit;
@@ -198,22 +229,23 @@ void DataItems::EditAnItem()
 	getline(cin, nameOfItem);
 	int pos = findByName(nameOfItem);
 	if (pos > -1) {
+		this->oldName = nameOfItem;
 		cout << "Enter name you want to edit to: ";
 		getline(cin, nameOfItemWantToEdit);
 		cout << "Enter price you want to edit to: ";
 		cin >> priceWantToEdit;
 		listItems.at(pos).setNameOfItem(nameOfItemWantToEdit);
+		this->newName = listItems.at(pos).getNameOfItem();
 		listItems.at(pos).setPrice(priceWantToEdit);
-		//edit(nameOfItemWantToEdit, priceWantToEdit);
 		cout << "Success!" << endl;
 		updateFIle();
+		return pos;
 	}
 	else {
 		cout << "Can't find this item!"<<endl;
-		return;
+		cout << pos << endl;
+		return -1;
 	}
-	
-
 }
 
 int DataItems::getPartition(vector<Items>& givenArray, int low, int high)

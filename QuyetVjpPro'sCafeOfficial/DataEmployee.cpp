@@ -5,6 +5,11 @@ DataEmployee::DataEmployee()
     readFile();
 }
 
+string DataEmployee::getIdTemp()
+{
+    return idTemp;
+}
+
 void DataEmployee::readFile()
 {
     ifstream fi("ListEmployee.txt");
@@ -76,6 +81,7 @@ void DataEmployee::insert()
     Employee emp(idOfEmployee, name, address, phone_number, day, month, year, basic_salary, bonus);
     listEmployee.push_back(emp);
     Mysort();
+    this->idTemp = to_string(generateId);
     updateFile();
 }
 
@@ -104,7 +110,7 @@ void DataEmployee::updateFile()
     fo.close();
 }
 
-void DataEmployee::editAnEmployee()
+int DataEmployee::editAnEmployee()
 {
     string oldID;
     string IdOfEmployee;
@@ -120,8 +126,10 @@ void DataEmployee::editAnEmployee()
 
     int pos = findById(IdOfEmployee);
     if (pos > -1) {
+        
         oldID = listEmployee.at(pos).getIdOfEmployee();
         bonus = listEmployee.at(pos).getBonus();
+        this->idTemp = oldID;
         Delete(IdOfEmployee);
         cout << "Enter name you want to edit to: ";
         getline(cin, nameOfEmployeeWantToEdit);
@@ -144,18 +152,21 @@ void DataEmployee::editAnEmployee()
     else {
         cout << "Can't find this employee!" << endl;
     }
+    return pos;
 }
 
-void DataEmployee::deleteEmployee()
+
+int DataEmployee::deleteEmployee()
 {
     int index = -1;
-    string name;
+    string id;
     cin.ignore();
-    cout << "Input Name: ";
-    getline(cin, name);
+    cout << "Input Id of employee you want to delete: ";
+    getline(cin, id);
     for (int i = 0; i < listEmployee.size(); i++) {
-        if (listEmployee.at(i).getPerson().getName().compare(name) == 0) {
+        if (listEmployee.at(i).getIdOfEmployee().compare(id) == 0) {
             index = i;
+            this->idTemp = listEmployee.at(i).getIdOfEmployee();
             listEmployee.erase(listEmployee.begin() + index);
             cout << "DONE!\n";
         }
@@ -164,6 +175,8 @@ void DataEmployee::deleteEmployee()
     if (index == -1) {
         cout << "NULL!\n";
     }
+    return index;
+    
 }
 
 void DataEmployee::display()

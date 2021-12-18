@@ -21,8 +21,10 @@ private:
 	Items it;
 	Employee emp;
 	vector<string>LogOfSystem;
+	
 public:
 	void readFileLog();
+	void updateFileLog();
 	void login();
 	void showCaseAdmin();
 	void showCaseEmployee();

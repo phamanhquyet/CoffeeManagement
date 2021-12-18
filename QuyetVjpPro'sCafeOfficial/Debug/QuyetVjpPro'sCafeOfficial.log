@@ -1,6 +1,7 @@
-﻿  Employee.cpp
-E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\Employee.cpp(60,53): warning C4129: '|': unrecognized character escape sequence
-E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\Employee.cpp(96,20): warning C4018: '<': signed/unsigned mismatch
-E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\Employee.cpp(106,20): warning C4018: '<': signed/unsigned mismatch
-E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\Employee.cpp(120,20): warning C4018: '<': signed/unsigned mismatch
+﻿  AppCoffee.cpp
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\AppCoffee.cpp(22,20): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\AppCoffee.cpp(39,20): warning C4018: '<': signed/unsigned mismatch
+  DataItems.cpp
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataItems.cpp(104,21): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   QuyetVjpPro'sCafeOfficial.vcxproj -> E:\VSStudio\CoffeeManagement\Debug\QuyetVjpPro'sCafeOfficial.exe

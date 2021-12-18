@@ -5,15 +5,19 @@ class DataEmployee
 private:
 	vector<Employee>listEmployee;
 	int generateId = 1;
+	string idTemp;
+	//DataAccount listAcc;
+	
 public:
 	DataEmployee();
+	string getIdTemp();
 	void readFile();
 	bool checkId(string id);
 	void insert();
 	void Delete(string id);
 	void updateFile();
-	void editAnEmployee();
-	void deleteEmployee();
+	int editAnEmployee();
+	int deleteEmployee();
 	void display();
 	int findById(string id);
 	int findByName(string name);

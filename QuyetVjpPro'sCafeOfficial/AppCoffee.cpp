@@ -2,11 +2,11 @@
 
 void AppCoffee::readFileLog()
 {
-	ifstream fi("Log.txt");
-	while (fi.good())
+	ifstream fi("Log.txt",ios::in);
+	while (!fi.eof())
 	{
 		string log;
-		getline(fi,log,'\n');
+		getline(fi, log, '\n');
 		if (log == "") {
 			break;
 		}
@@ -15,6 +15,16 @@ void AppCoffee::readFileLog()
 	fi.close();
 	
 }
+
+void AppCoffee::updateFileLog()
+{
+	ofstream fo("Log.txt");
+	for (int i = 0; i < LogOfSystem.size(); i++) {
+		fo << LogOfSystem.at(i)<<endl;
+	}
+}
+
+
 
 void AppCoffee::login()
 {
@@ -39,22 +49,20 @@ void AppCoffee::login()
 		return;
 	}
 	else {
-	    ofstream fo("Log.txt");
+		vector<string>::iterator it;
+		it = LogOfSystem.begin();
 		string time = log.Time();
+		time.erase(time.end()-1);
 		cout << "WELCOME \"" << listAcc.getListAccount().at(index).getUsername() << "\" TO QUYETVJPPRO'S CAFE\n";
 		cout << "TIME LOGIN: " << time << endl;
-		string str1 = "User " + listAcc.getListAccount().at(index).getUsername() + " login into system at " + time;
-		LogOfSystem.push_back(str1);
-		cout << LogOfSystem.size();
-		for (int i = 0; i < LogOfSystem.size(); i++) {
-			fo << LogOfSystem.at(i)<<endl;
-		}
-		fo.close();
+		string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" login into system at " + time;
+		LogOfSystem.insert(it,str1);
+		updateFileLog();
 	}
 	if (listAcc.getListAccount().at(index).getPermisstion() == "admin") {
 		cout << "PERMISSION: " << listAcc.getListAccount().at(index).getPermisstion() << endl;;
 		showCaseAdmin();
-	}
+	}	
 	else if (listAcc.getListAccount().at(index).getPermisstion() == "employee") {
 		cout << "PERMISSION: " << listAcc.getListAccount().at(index).getPermisstion() << endl;
 		showCaseEmployee();
@@ -86,49 +94,100 @@ void AppCoffee::showCaseAdmin()
 		cin >> key;
 		switch (key)
 		{
-		case '1':
+		case '1': {
 			listEmp.insert();
+			vector<string>::iterator it;
+			it = LogOfSystem.begin();
+			string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" add an employee to system has id at \'" + listEmp.getIdTemp() + "\' at " + log.Time();
+			str1.erase(str1.end() - 1);
+			LogOfSystem.insert(it, str1);
+			updateFileLog();
 			system("pause");
 			break;
-			
-		case '2':
-			listEmp.deleteEmployee();
+		}
+		case '2':{
+			if (listEmp.deleteEmployee() > -1) {
+				vector<string>::iterator it;
+				it = LogOfSystem.begin();
+				string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" delete an employee has id \'" + listEmp.getIdTemp() + "\' from system at " + log.Time();
+				str1.erase(str1.end() - 1);
+				LogOfSystem.insert(it, str1);
+				updateFileLog();
+			}
 			system("pause");
 			break;
-		case '3':
-			listEmp.editAnEmployee();
+		}
+		case '3': {
+			if (listEmp.editAnEmployee() >-1) {
+				vector<string>::iterator it;
+				it = LogOfSystem.begin();
+				string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" edit an employee has id \'" + listEmp.getIdTemp() + "\' from system at " + log.Time();
+				str1.erase(str1.end() - 1);
+				LogOfSystem.insert(it, str1);
+				updateFileLog();
+			}
 			system("pause");
 			break;
-		case '4':
+		}
+		case '4': {
 			listEmp.HashDisplayByName();
 			system("pause");
 			break;
-		case '5':
+		}
+		case '5': {
 			listEmp.display();
 			system("pause");
 			break;
-		case '6':
+		}
+		case '6': {
 			listItems.insertAnItem();
+			vector<string>::iterator it;
+			it = LogOfSystem.begin();
+			string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" add an item to system has id \'" + listItems.getIdTemp() + "\' named \""+ listItems.getNameTemp() + "\" at " + log.Time();
+			str1.erase(str1.end() - 1);
+			LogOfSystem.insert(it, str1);
+			updateFileLog();
 			system("pause");
 			break;
-		case '7':
+		}
+		case '7': {
 			listItems.DeleteAnItem();
+			if (listItems.getIndexTemp() > -1) {
+				vector<string>::iterator it;
+				it = LogOfSystem.begin();
+				string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" delete an item named \'" + listItems.getNameTemp() + "\' from system at " + log.Time();
+				str1.erase(str1.end() - 1);
+				LogOfSystem.insert(it, str1);
+				updateFileLog();
+			}
 			system("pause");
 			break;
-		case '8':
-			listItems.EditAnItem();
+		}
+		case '8': {
+			if (listItems.EditAnItem() > -1) {
+				vector<string>::iterator it;
+				it = LogOfSystem.begin();
+				string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" edit an item named \"" + listItems.getOldName() + "\" to \"" + listItems.getNewNamw() + "\" at " + log.Time();
+				str1.erase(str1.end() - 1);
+				LogOfSystem.insert(it, str1);
+				updateFileLog();
+			}
 			system("pause");
 			break;
-		case '9':
+		}
+		case '9': {
 			listItems.HashDisplayByName();
 			system("pause");
 			break;
-		case '0':
+		}
+		case '0': {
 			listItems.display();
 			system("pause");
 			break;
-		case 'e':
+		}
+		case 'e': {
 			return;
+		}
 		default:
 			break;
 		}
