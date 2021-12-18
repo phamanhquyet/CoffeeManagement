@@ -6,6 +6,7 @@ private:
 	vector<Employee>listEmployee;
 	int generateId = 1;
 	string idTemp;
+	Employee emp;
 	//DataAccount listAcc;
 	
 public:

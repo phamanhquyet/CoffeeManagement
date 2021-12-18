@@ -1,7 +1,16 @@
-﻿  AppCoffee.cpp
-E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\AppCoffee.cpp(22,20): warning C4018: '<': signed/unsigned mismatch
-E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\AppCoffee.cpp(39,20): warning C4018: '<': signed/unsigned mismatch
-  DataItems.cpp
-E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataItems.cpp(104,21): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+﻿  DataEmployee.cpp
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(58,24): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(86,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(101,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(116,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(192,27): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(207,27): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(222,27): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(266,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(299,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(311,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(335,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(357,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(366,23): warning C4018: '<': signed/unsigned mismatch
+E:\VSStudio\CoffeeManagement\QuyetVjpPro'sCafeOfficial\DataEmployee.cpp(379,23): warning C4018: '<': signed/unsigned mismatch
   QuyetVjpPro'sCafeOfficial.vcxproj -> E:\VSStudio\CoffeeManagement\Debug\QuyetVjpPro'sCafeOfficial.exe

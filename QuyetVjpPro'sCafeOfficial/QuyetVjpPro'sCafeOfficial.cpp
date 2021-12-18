@@ -10,6 +10,8 @@ int main()
 	dt.EditAnItem();
 	dt.updateFIle();
 	dt.display();*/
+	/*DataEmployee dt;
+	dt.display();*/
 	return 0;
 }
 

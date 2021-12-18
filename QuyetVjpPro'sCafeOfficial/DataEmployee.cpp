@@ -15,14 +15,14 @@ void DataEmployee::readFile()
     ifstream fi("ListEmployee.txt");
     while (fi.good()) {
         string id, name, address, phoneNumber, day, month, year, basicSalary, bonus;
-        getline(fi, id, ',');
-        getline(fi, name, ',');
-        getline(fi, address, ',');
-        getline(fi, phoneNumber, ',');
-        getline(fi, day, ',');
-        getline(fi, month, ',');
-        getline(fi, year, ',');
-        getline(fi, basicSalary, ',');
+        getline(fi, id, '|');
+        getline(fi, name, '|');
+        getline(fi, address, '|');
+        getline(fi, phoneNumber, '|');
+        getline(fi, day, '|');
+        getline(fi, month, '|');
+        getline(fi, year, '|');
+        getline(fi, basicSalary, '|');
         getline(fi, bonus, '\n');
         if (id == "" || name == "" || address == "" || phoneNumber == "" || day == "" || month == "" || year == "" || basicSalary == "" || bonus == "") {
             break;
@@ -38,6 +38,18 @@ void DataEmployee::readFile()
         listEmployee.push_back(emp);
     }
     fi.close();
+}
+void DataEmployee::updateFile()
+{
+    ofstream fo("ListEmployee.txt");
+    for (int i = 0; unsigned(i) < listEmployee.size(); i++) {
+        fo << listEmployee.at(i).getIdOfEmployee() << "|" << listEmployee.at(i).getPerson().getName() << "|"
+            << listEmployee.at(i).getPerson().getAddress() << "|" << listEmployee.at(i).getPerson().getPhoneNumber() << "|"
+            << listEmployee.at(i).getPerson().getDateOfBirth().getDay() << "|" << listEmployee.at(i).getPerson().getDateOfBirth().getMonth() << "|"
+            << listEmployee.at(i).getPerson().getDateOfBirth().getYear() << "|" << listEmployee.at(i).getBasicSalary() << "|"
+            << listEmployee.at(i).getBonus() << endl;
+    }
+    fo.close();
 }
 
 bool DataEmployee::checkId(string id)
@@ -65,19 +77,73 @@ void DataEmployee::insert()
     if (checkId(idOfEmployee)) {
         goto plus1ToId;
     }
+   
     cin.ignore();
+    inputName:
+    bool flagForName = false;
     cout << "Input Name: ";
     getline(cin, name);
+    for (int i = 0; i < name.length(); i++) {
+        if ((name[i] != 32 && name[i] >= 0 && name[i] <= 64) || (name[i] >= 91 && name[i] <= 96) || (name[i] >= 123 && name[i] <= 255)) {
+            flagForName = true;
+            break;
+        }
+    }
+    if (flagForName == true) {
+        cout << "Invalid, please re-enter" << endl;
+        goto inputName;
+    }
+    handleString(name);
+    inputAddress:
+    bool flagForAddress = false;
     cout << "Input Address: ";
     getline(cin, address);
+    for (int i = 0; i < address.length(); i++) {
+        if ((address[i] != 32 && address[i] >= 0 && address[i] <= 43) || (address[i] >= 91 && address[i] <= 96) || (address[i] >= 123 && address[i] <= 255)) {
+            flagForAddress = true;
+            break;
+        }
+    }
+    if (flagForAddress == true) {
+        cout << "Invalid, please re-enter" << endl;
+        goto inputAddress;
+    }
+    handleString(address);
+    inputPhoneNumber:
+    bool flagForPhoneNumber = false;
     cout << "Input PhoneNumber: ";
     getline(cin, phone_number);
-    cout << "Input Day-Month-Year: ";
-    cin >> day >> month >> year;
-    cout << "Input Basic Salary: ";
-    cin >> basic_salary;
-    cout << "Input Bonus: ";
-    cin >> bonus;
+    for (int i = 0; i < phone_number.length(); i++) {
+        if (phone_number[i] < 48 || phone_number[i] > 57) {
+            flagForPhoneNumber = true;
+            break;
+        }
+    }
+    if (flagForPhoneNumber == true) {
+        cout << "Invalid, please re-enter" << endl;
+        goto inputPhoneNumber;
+    }
+    do {
+        cout << "Input Day-Month-Year: ";
+        cin >> day >> month >> year;
+        if (day > emp.getPerson().getDateOfBirth().maxDay(month,year) || (month < 0 || month > 12) || (year < 1900 || year > 2500)) {
+            cout << "Invalid, please re-enter" << endl;
+        }
+    } while (day > emp.getPerson().getDateOfBirth().maxDay(month, year) || (month < 0 || month > 12) || (year < 1900 || year > 2500));
+    do {
+        cout << "Input Basic Salary: ";
+        cin >> basic_salary;
+        if (basic_salary < 0) {
+            cout << "Invalid, please re-enter" << endl;
+        }
+    } while (basic_salary < 0);
+    do {
+        cout << "Input Bonus: ";
+        cin >> bonus;
+        if (bonus < 0) {
+            cout << "Invalid, please re-enter" << endl;
+        }
+    } while (bonus < 0);
     Employee emp(idOfEmployee, name, address, phone_number, day, month, year, basic_salary, bonus);
     listEmployee.push_back(emp);
     Mysort();
@@ -97,18 +163,6 @@ void DataEmployee::Delete(string id)
 
 }
 
-void DataEmployee::updateFile()
-{
-    ofstream fo("ListEmployee.txt");
-    for (int i = 0; unsigned(i) < listEmployee.size(); i++) {
-         fo << listEmployee.at(i).getIdOfEmployee() << "," << listEmployee.at(i).getPerson().getName() << ","
-            << listEmployee.at(i).getPerson().getAddress() << "," << listEmployee.at(i).getPerson().getPhoneNumber() << ","
-            << listEmployee.at(i).getPerson().getDateOfBirth().getDay() << "," << listEmployee.at(i).getPerson().getDateOfBirth().getMonth() << ","
-            << listEmployee.at(i).getPerson().getDateOfBirth().getYear() << "," << listEmployee.at(i).getBasicSalary() << ","
-            << listEmployee.at(i).getBonus()<<endl;
-    }
-    fo.close();
-}
 
 int DataEmployee::editAnEmployee()
 {
@@ -131,21 +185,67 @@ int DataEmployee::editAnEmployee()
         bonus = listEmployee.at(pos).getBonus();
         this->idTemp = oldID;
         Delete(IdOfEmployee);
+        inputName:
+        bool flagForName = false;
         cout << "Enter name you want to edit to: ";
         getline(cin, nameOfEmployeeWantToEdit);
+        for (int i = 0; i < nameOfEmployeeWantToEdit.length(); i++) {
+            if ((nameOfEmployeeWantToEdit[i] != 32 && nameOfEmployeeWantToEdit[i] >= 0 && nameOfEmployeeWantToEdit[i] <= 64) || (nameOfEmployeeWantToEdit[i] >= 91 && nameOfEmployeeWantToEdit[i] <= 96) || (nameOfEmployeeWantToEdit[i] >= 123 && nameOfEmployeeWantToEdit[i] <= 255)) {
+                flagForName = true;
+                break;
+            }
+        }
+        if (flagForName == true) {
+            cout << "Invalid, please re-enter" << endl;
+            goto inputName;
+        }
         handleString(nameOfEmployeeWantToEdit);
+        inputAddress:
+        bool flagForAddress = false;
         cout << "Enter address you want to edit to: ";
         getline(cin, addressWantToEdit);
+        for (int i = 0; i < addressWantToEdit.length(); i++) {
+            if ((addressWantToEdit[i] != 32 && addressWantToEdit[i] >= 0 && addressWantToEdit[i] <= 43) || (addressWantToEdit[i] >= 91 && addressWantToEdit[i] <= 96) || (addressWantToEdit[i] >= 123 && addressWantToEdit[i] <= 255)) {
+                flagForAddress = true;
+                break;
+            }
+        }
+        if (flagForAddress == true) {
+            cout << "Invalid, please re-enter" << endl;
+            goto inputAddress;
+        }
         handleString(addressWantToEdit);
+        inputPhoneNumber:
+        bool flagForPhoneNumber = false;
         cout << "Enter phone number you want to edit to: ";
         getline(cin, phoneNumberOfEmployeeWantToEdit);
-        cout << "Enter Day-Month-Year you want to edit to: ";
-        cin >> day >> month >> year;
-        cout << "Enter basic salary you want to edit to: ";
-        cin >> basicSalary;
+        for (int i = 0; i < phoneNumberOfEmployeeWantToEdit.length(); i++) {
+            if (phoneNumberOfEmployeeWantToEdit[i] < 48 || phoneNumberOfEmployeeWantToEdit[i] > 57) {
+                flagForPhoneNumber = true;
+                break;
+            }
+        }
+        if (flagForPhoneNumber == true) {
+            cout << "Invalid, please re-enter" << endl;
+            goto inputPhoneNumber;
+        }
+        do {
+            cout << "Enter Day-Month-Year you want to edit to: ";
+            cin >> day >> month >> year;
+            if (day > emp.getPerson().getDateOfBirth().maxDay(month, year) || (month < 0 || month > 12) || (year < 1900 || year > 2500)) {
+                cout << "Invalid, please re-enter" << endl;
+            }
+        } while (day > emp.getPerson().getDateOfBirth().maxDay(month, year) || (month < 0 || month > 12) || (year < 1900 || year > 2500));
+        
+        do {
+            cout << "Enter basic salary you want to edit to: ";
+            cin >> basicSalary;
+            if (basicSalary < 0) {
+                cout << "Invalid, please re-enter" << endl;
+            }
+        } while (basicSalary < 0);
         Employee emp(oldID, nameOfEmployeeWantToEdit, addressWantToEdit,phoneNumberOfEmployeeWantToEdit, day, month, year, basicSalary, bonus);
         listEmployee.insert(listEmployee.begin() + pos, emp);
-        
         cout << "Success!" << endl;
         updateFile();
     }
@@ -182,15 +282,15 @@ int DataEmployee::deleteEmployee()
 void DataEmployee::display()
 {
     cout << setw(100) << "List of employees are working at Quyet Vjp Pro's Cafe" << endl;
-    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
-    cout << "| Id\t\t| Name\t\t\t| Address\t\t| Phone Number\t\t| Date Of Birth\t\t| Basic Salary\t| Bonus\t\t|" << endl;
+    cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "| Id\t\t| Name\t\t\t| Address\t\t\t\t\t\t\t| Phone Number\t| Date Of Birth\t\t| Basic Salary\t| Bonus\t\t|" << endl;
 
-    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
     for (int i = 0; unsigned(i) < listEmployee.size(); i++) {
         listEmployee.at(i).display();
 
     }
-    cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 int DataEmployee::findById(string id)

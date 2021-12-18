@@ -98,7 +98,7 @@ void AppCoffee::showCaseAdmin()
 			listEmp.insert();
 			vector<string>::iterator it;
 			it = LogOfSystem.begin();
-			string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" add an employee to system has id at \'" + listEmp.getIdTemp() + "\' at " + log.Time();
+			string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" add an employee to system has id \'" + listEmp.getIdTemp() + "\' at " + log.Time();
 			str1.erase(str1.end() - 1);
 			LogOfSystem.insert(it, str1);
 			updateFileLog();
