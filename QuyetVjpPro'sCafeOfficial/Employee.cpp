@@ -58,7 +58,7 @@ void Employee::input()
 void Employee::display()
 {
 	
-	cout << "| " << setw(5) << left << idOfEmployee << "\t\t\| "
+	cout << "| " << setw(5) << left << idOfEmployee << "\t\t| "
 		<< setw(15) << p.getName() << "\t| "
 		<< setw(55) << p.getAddress() << "\t| " 
 		<< setw(10)<<p.getPhoneNumber() << "\t| " 
@@ -94,7 +94,7 @@ void Employee::createBill()
 long Employee::totalBill(string idBill)
 {
 	long sum = 0;
-	for (int i = 0; i < Bill.size(); i++) {
+	for (int i = 0; (unsigned)i < Bill.size(); i++) {
 		if (idBill.compare(Bill.at(i).getIdBill()) == 0) {
 			sum += Bill.at(i).total();
 		}
@@ -104,7 +104,7 @@ long Employee::totalBill(string idBill)
 
 void Employee::displayBill(string idBill)
 {
-	for (int i = 0; i < Bill.size(); i++) {
+	for (int i = 0; (unsigned)i < Bill.size(); i++) {
 		if (idBill.compare(Bill.at(i).getIdBill()) == 0) {
 			Bill.at(i).displaybyBill(); cout << endl;
 		}
@@ -118,7 +118,7 @@ void Employee::readBill()
 void Employee::exportBill(string idBill)
 {
 	ofstream fo("Bill.txt");
-	for (int i = 0; i < Bill.size(); i++) {
+	for (int i = 0; (unsigned)i < Bill.size(); i++) {
 		if (idBill.compare(Bill.at(i).getIdBill()) == 0) {
 			Bill.at(i).displaybyBill(); cout << endl;
 			fo << Bill.at(i).getIdBill() << "," << Bill.at(i).getNameOfItem() << "," << Bill.at(i).getPrice() << "," << Bill.at(i).getAmount() << "," << totalBill(Bill.at(i).getIdBill()) << endl;

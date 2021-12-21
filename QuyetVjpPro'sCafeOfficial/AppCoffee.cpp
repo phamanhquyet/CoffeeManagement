@@ -19,7 +19,7 @@ void AppCoffee::readFileLog()
 void AppCoffee::updateFileLog()
 {
 	ofstream fo("Log.txt");
-	for (int i = 0; i < LogOfSystem.size(); i++) {
+	for (int i = 0; (unsigned)i < LogOfSystem.size(); i++) {
 		fo << LogOfSystem.at(i)<<endl;
 	}
 }
@@ -36,7 +36,7 @@ void AppCoffee::login()
 	cout << "INPUT PASSWORD: ";
 	getline(cin, password);
 	//cout << listAcc.getListAccount().size();
-	for (int i = 0; i < listAcc.getListAccount().size(); i++) {
+	for (int i = 0; (unsigned)i < listAcc.getListAccount().size(); i++) {
 		if ((listAcc.getListAccount().at(i).getUsername().compare(username) == 0) && (listAcc.getListAccount().at(i).getPassword().compare(password)) == 0) {
 			cout << "Access!\n";
 			system("cls");
@@ -78,11 +78,11 @@ void AppCoffee::showCaseAdmin()
 	while (true)
 	{
 		cout << "+-------------------------------------MENU ADMIN--------------------------------------+\n";
-		cout << "|                               1. Them Nhan Vien                                     |\n";
-		cout << "|                               2. Xoa Nhan Vien                                      |\n";
-		cout << "|                               3. Sua Nhan Vien                                      |\n";
-		cout << "|                               4. Tim Kiem Nhan Vien                                 |\n";
-		cout << "|                               5. Danh Sach Nhan Vien                                |\n";
+		cout << "|                               1. Add an Employee                                    |\n";
+		cout << "|                               2. Remove an Employee                                 |\n";
+		cout << "|                               3. Edit an Employee                                   |\n";
+		cout << "|                               4. Find an Employee                                   |\n";
+		cout << "|                               5. List of Employee's information                     |\n";
 		cout << "|                               6. Them Item                                          |\n";
 		cout << "|                               7. Xoa Item                                           |\n";
 		cout << "|                               8. Sua Item                                           |\n";
@@ -165,9 +165,25 @@ void AppCoffee::showCaseAdmin()
 		}
 		case '8': {
 			if (listItems.EditAnItem() > -1) {
+				string str1;
 				vector<string>::iterator it;
 				it = LogOfSystem.begin();
-				string str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" edit an item named \"" + listItems.getOldName() + "\" to \"" + listItems.getNewNamw() + "\" at " + log.Time();
+				if (listItems.getOldName().compare(listItems.getNewName()) != 0) {
+					if (listItems.getOldPrice() == listItems.getNewPrice()) {
+						 str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" edit an item named \"" + listItems.getOldName() + "\" to \"" + listItems.getNewName() + "\" and keep the same price of item at " + log.Time();
+					}
+					else {
+						 str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" edit an item named \"" + listItems.getOldName() + "\" to \"" + listItems.getNewName() + "\" and edit the price from " + to_string(listItems.getOldPrice()) + " to " + to_string(listItems.getNewPrice()) + " at " + log.Time();
+					}
+				}
+				else {
+					if (listItems.getOldPrice() == listItems.getNewPrice()) {
+						 str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" access edit an item feature but do not edit and keep the information at " + log.Time();
+					}
+					else {
+						 str1 = "User: \"" + listAcc.getListAccount().at(index).getUsername() + "\" keep the name of \"" + listItems.getOldName() + "\" and edit the price from " + to_string(listItems.getOldPrice()) + " to " + to_string(listItems.getNewPrice()) + " at " + log.Time();
+					}
+				}
 				str1.erase(str1.end() - 1);
 				LogOfSystem.insert(it, str1);
 				updateFileLog();

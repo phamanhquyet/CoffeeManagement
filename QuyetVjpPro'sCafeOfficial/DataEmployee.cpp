@@ -55,7 +55,7 @@ void DataEmployee::updateFile()
 bool DataEmployee::checkId(string id)
 {
     bool flag = false;
-    for (auto i = 0; i < listEmployee.size(); i++) {
+    for (auto i = 0; (unsigned)i < listEmployee.size(); i++) {
         if (listEmployee.at(i).getIdOfEmployee().compare(id) == 0) {
             this->generateId += 1;
             flag = true;
@@ -69,7 +69,9 @@ bool DataEmployee::checkId(string id)
 void DataEmployee::insert()
 {
     string name, address, phone_number;
-    int day, month, year, bonus;
+    string day, month, year;
+    int dayOfBirth, monthOfBirth, yearOfBirth;
+    int bonus;
     long basic_salary;
     this->generateId = 1;
     plus1ToId:
@@ -83,14 +85,15 @@ void DataEmployee::insert()
     bool flagForName = false;
     cout << "Input Name: ";
     getline(cin, name);
-    for (int i = 0; i < name.length(); i++) {
+    for (int i = 0; (unsigned)i < name.length(); i++) {
         if ((name[i] != 32 && name[i] >= 0 && name[i] <= 64) || (name[i] >= 91 && name[i] <= 96) || (name[i] >= 123 && name[i] <= 255)) {
+            cout << "Character \"" << name[i] << "\" is invalid! ";
             flagForName = true;
             break;
         }
     }
     if (flagForName == true) {
-        cout << "Invalid, please re-enter" << endl;
+        cout << "Please re-enter" << endl;
         goto inputName;
     }
     handleString(name);
@@ -98,14 +101,15 @@ void DataEmployee::insert()
     bool flagForAddress = false;
     cout << "Input Address: ";
     getline(cin, address);
-    for (int i = 0; i < address.length(); i++) {
-        if ((address[i] != 32 && address[i] >= 0 && address[i] <= 43) || (address[i] >= 91 && address[i] <= 96) || (address[i] >= 123 && address[i] <= 255)) {
+    for (int i = 0; (unsigned)i < address.length(); i++) {
+        if ((address[i] != 32 && address[i] >= 0 && address[i] <= 43) || (address[i] >= 58 && address[i] <= 64) || (address[i] >= 91 && address[i] <= 96) || (address[i] >= 123 && address[i] <= 255)) {
+            cout << "Character \"" << address[i] << "\" is invalid! ";
             flagForAddress = true;
             break;
         }
     }
     if (flagForAddress == true) {
-        cout << "Invalid, please re-enter" << endl;
+        cout << "Please re-enter" << endl;
         goto inputAddress;
     }
     handleString(address);
@@ -113,23 +117,72 @@ void DataEmployee::insert()
     bool flagForPhoneNumber = false;
     cout << "Input PhoneNumber: ";
     getline(cin, phone_number);
-    for (int i = 0; i < phone_number.length(); i++) {
+    for (int i = 0; (unsigned)i < phone_number.length(); i++) {
         if (phone_number[i] < 48 || phone_number[i] > 57) {
+            cout << "Number \"" << phone_number[i] << "\" is invalid! ";
             flagForPhoneNumber = true;
             break;
         }
     }
     if (flagForPhoneNumber == true) {
-        cout << "Invalid, please re-enter" << endl;
+        cout << "Please re-enter" << endl;
         goto inputPhoneNumber;
     }
     do {
-        cout << "Input Day-Month-Year: ";
-        cin >> day >> month >> year;
-        if (day > emp.getPerson().getDateOfBirth().maxDay(month,year) || (month < 0 || month > 12) || (year < 1900 || year > 2500)) {
+        inputDayOfBirth:
+        bool flagForDateOfBirth = false;
+        cout << "Input Day Of Birth: ";
+        
+        getline(cin, day);
+        
+        for (int i = 0;(unsigned) i < day.length(); i++) {
+            if (day[i] < 48 || day[i] > 57) {
+                cout << "Character '" << day[i] << "' is invalid! ";
+                flagForDateOfBirth = true;
+                break;
+            }
+        }
+        if (flagForDateOfBirth == true) {
+            cout << "Please re-enter" << endl;
+            goto inputDayOfBirth;
+        }
+        dayOfBirth = stoi(day);
+        inputMonthOfBirth:
+        bool flagForMonthOfBirth = false;
+        cout << "Input Month Of Birth: ";
+        getline(cin, month);
+        for (int i = 0; (unsigned)i < month.length(); i++) {
+            if (month[i] < 48 || month[i] > 57) {
+                cout << "Character '" << month[i] << "' is invalid! ";
+                flagForMonthOfBirth = true;
+                break;
+            }
+        }
+        if (flagForMonthOfBirth == true) {
+            cout << "Please re-enter" << endl;
+            goto inputMonthOfBirth;
+        }
+        monthOfBirth = stoi(month);
+        inputYearOfBirth:
+        bool flagForYearOfBirth = false;
+        cout << "Input Year Of Birth: ";
+        getline(cin, year);
+        for (int i = 0; (unsigned)i < year.length(); i++) {
+            if (year[i] < 48 || year[i] > 57) {
+                cout << "Character '" << year[i] << "' is invalid! ";
+                flagForYearOfBirth = true;
+                break;
+            }
+        }
+        if (flagForYearOfBirth == true) {
+            cout << "Please re-enter" << endl;
+            goto inputYearOfBirth;
+        }
+        yearOfBirth = stoi(year);
+        if (dayOfBirth > emp.getPerson().getDateOfBirth().maxDay(monthOfBirth, yearOfBirth) || (monthOfBirth < 0 || monthOfBirth > 12) || (yearOfBirth < 1900 || yearOfBirth > 2500)) {
             cout << "Invalid, please re-enter" << endl;
         }
-    } while (day > emp.getPerson().getDateOfBirth().maxDay(month, year) || (month < 0 || month > 12) || (year < 1900 || year > 2500));
+    } while (dayOfBirth > emp.getPerson().getDateOfBirth().maxDay(monthOfBirth, yearOfBirth) || (monthOfBirth < 0 || monthOfBirth > 12) || (yearOfBirth < 1900 || yearOfBirth > 2500));
     do {
         cout << "Input Basic Salary: ";
         cin >> basic_salary;
@@ -144,7 +197,7 @@ void DataEmployee::insert()
             cout << "Invalid, please re-enter" << endl;
         }
     } while (bonus < 0);
-    Employee emp(idOfEmployee, name, address, phone_number, day, month, year, basic_salary, bonus);
+    Employee emp(idOfEmployee, name, address, phone_number, dayOfBirth, monthOfBirth, yearOfBirth, basic_salary, bonus);
     listEmployee.push_back(emp);
     Mysort();
     this->idTemp = to_string(generateId);
@@ -155,7 +208,7 @@ void DataEmployee::Delete(string id)
 {
     int pos = findById(id);
     if (pos == -1){
-        cout<<"can't find this employee"<<endl;
+        cout<<"Can't find this employee"<<endl;
         return;
     }
     listEmployee.erase(listEmployee.begin() + pos);
@@ -171,7 +224,8 @@ int DataEmployee::editAnEmployee()
     string nameOfEmployeeWantToEdit;
     string addressWantToEdit;
     string phoneNumberOfEmployeeWantToEdit;
-    int day, month, year;
+    string day, month, year;
+    int dayWantToEdit, monthWantToEdit, yearWantToEdit;
     long basicSalary;
     int bonus;
     cout << "Enter id of employee: ";
@@ -189,14 +243,15 @@ int DataEmployee::editAnEmployee()
         bool flagForName = false;
         cout << "Enter name you want to edit to: ";
         getline(cin, nameOfEmployeeWantToEdit);
-        for (int i = 0; i < nameOfEmployeeWantToEdit.length(); i++) {
+        for (int i = 0; (unsigned)i < nameOfEmployeeWantToEdit.length(); i++) {
             if ((nameOfEmployeeWantToEdit[i] != 32 && nameOfEmployeeWantToEdit[i] >= 0 && nameOfEmployeeWantToEdit[i] <= 64) || (nameOfEmployeeWantToEdit[i] >= 91 && nameOfEmployeeWantToEdit[i] <= 96) || (nameOfEmployeeWantToEdit[i] >= 123 && nameOfEmployeeWantToEdit[i] <= 255)) {
+                cout << "Character \"" << nameOfEmployeeWantToEdit[i] << "\" is invalid! ";
                 flagForName = true;
                 break;
             }
         }
         if (flagForName == true) {
-            cout << "Invalid, please re-enter" << endl;
+            cout << "Please re-enter" << endl;
             goto inputName;
         }
         handleString(nameOfEmployeeWantToEdit);
@@ -204,14 +259,15 @@ int DataEmployee::editAnEmployee()
         bool flagForAddress = false;
         cout << "Enter address you want to edit to: ";
         getline(cin, addressWantToEdit);
-        for (int i = 0; i < addressWantToEdit.length(); i++) {
-            if ((addressWantToEdit[i] != 32 && addressWantToEdit[i] >= 0 && addressWantToEdit[i] <= 43) || (addressWantToEdit[i] >= 91 && addressWantToEdit[i] <= 96) || (addressWantToEdit[i] >= 123 && addressWantToEdit[i] <= 255)) {
+        for (int i = 0; (unsigned)i < addressWantToEdit.length(); i++) {
+            if ((addressWantToEdit[i] != 32 && addressWantToEdit[i] >= 0 && addressWantToEdit[i] <= 43) || (addressWantToEdit[i] >= 58 && addressWantToEdit[i] <= 64) || (addressWantToEdit[i] >= 91 && addressWantToEdit[i] <= 96) || (addressWantToEdit[i] >= 123 && addressWantToEdit[i] <= 255)) {
+                cout << "Character \"" << addressWantToEdit[i] << "\" is invalid! ";
                 flagForAddress = true;
                 break;
             }
         }
         if (flagForAddress == true) {
-            cout << "Invalid, please re-enter" << endl;
+            cout << "Please re-enter" << endl;
             goto inputAddress;
         }
         handleString(addressWantToEdit);
@@ -219,23 +275,72 @@ int DataEmployee::editAnEmployee()
         bool flagForPhoneNumber = false;
         cout << "Enter phone number you want to edit to: ";
         getline(cin, phoneNumberOfEmployeeWantToEdit);
-        for (int i = 0; i < phoneNumberOfEmployeeWantToEdit.length(); i++) {
+        for (int i = 0; (unsigned)i < phoneNumberOfEmployeeWantToEdit.length(); i++) {
             if (phoneNumberOfEmployeeWantToEdit[i] < 48 || phoneNumberOfEmployeeWantToEdit[i] > 57) {
+                cout << "Number \"" << phoneNumberOfEmployeeWantToEdit[i] << "\" is invalid! ";
                 flagForPhoneNumber = true;
                 break;
             }
         }
         if (flagForPhoneNumber == true) {
-            cout << "Invalid, please re-enter" << endl;
+            cout << "Please re-enter" << endl;
             goto inputPhoneNumber;
         }
         do {
-            cout << "Enter Day-Month-Year you want to edit to: ";
-            cin >> day >> month >> year;
-            if (day > emp.getPerson().getDateOfBirth().maxDay(month, year) || (month < 0 || month > 12) || (year < 1900 || year > 2500)) {
+            inputDayOfBirth:
+            bool flagForDateOfBirth = false;
+            cout << "Input Day Of Birth: ";
+
+            getline(cin, day);
+
+            for (int i = 0; (unsigned)i < day.length(); i++) {
+                if (day[i] < 48 || day[i] > 57) {
+                    cout << "Character '" << day[i] << "' is invalid! ";
+                    flagForDateOfBirth = true;
+                    break;
+                }
+            }
+            if (flagForDateOfBirth == true) {
+                cout << "Please re-enter" << endl;
+                goto inputDayOfBirth;
+            }
+            dayWantToEdit = stoi(day);
+            inputMonthOfBirth:
+            bool flagForMonthOfBirth = false;
+            cout << "Input Month Of Birth: ";
+            getline(cin, month);
+            for (int i = 0; (unsigned)i < month.length(); i++) {
+                if (month[i] < 48 || month[i] > 57) {
+                    cout << "Character '" << month[i] << "' is invalid! ";
+                    flagForMonthOfBirth = true;
+                    break;
+                }
+            }
+            if (flagForMonthOfBirth == true) {
+                cout << "Please re-enter" << endl;
+                goto inputMonthOfBirth;
+            }
+            monthWantToEdit = stoi(month);
+            inputYearOfBirth:
+            bool flagForYearOfBirth = false;
+            cout << "Input Year Of Birth: ";
+            getline(cin, year);
+            for (int i = 0; (unsigned)i < year.length(); i++) {
+                if (year[i] < 48 || year[i] > 57) {
+                    cout << "Character '" << year[i] << "' is invalid! ";
+                    flagForYearOfBirth = true;
+                    break;
+                }
+            }
+            if (flagForYearOfBirth == true) {
+                cout << "Please re-enter" << endl;
+                goto inputYearOfBirth;
+            }
+            yearWantToEdit = stoi(year);
+            if (dayWantToEdit > emp.getPerson().getDateOfBirth().maxDay(monthWantToEdit, yearWantToEdit) || (monthWantToEdit < 0 || monthWantToEdit > 12) || (yearWantToEdit < 1900 || yearWantToEdit > 2500)) {
                 cout << "Invalid, please re-enter" << endl;
             }
-        } while (day > emp.getPerson().getDateOfBirth().maxDay(month, year) || (month < 0 || month > 12) || (year < 1900 || year > 2500));
+        } while (dayWantToEdit > emp.getPerson().getDateOfBirth().maxDay(monthWantToEdit, yearWantToEdit) || (monthWantToEdit < 0 || monthWantToEdit > 12) || (yearWantToEdit < 1900 || yearWantToEdit > 2500));
         
         do {
             cout << "Enter basic salary you want to edit to: ";
@@ -244,7 +349,7 @@ int DataEmployee::editAnEmployee()
                 cout << "Invalid, please re-enter" << endl;
             }
         } while (basicSalary < 0);
-        Employee emp(oldID, nameOfEmployeeWantToEdit, addressWantToEdit,phoneNumberOfEmployeeWantToEdit, day, month, year, basicSalary, bonus);
+        Employee emp(oldID, nameOfEmployeeWantToEdit, addressWantToEdit,phoneNumberOfEmployeeWantToEdit, dayWantToEdit, monthWantToEdit, yearWantToEdit, basicSalary, bonus);
         listEmployee.insert(listEmployee.begin() + pos, emp);
         cout << "Success!" << endl;
         updateFile();
@@ -263,7 +368,7 @@ int DataEmployee::deleteEmployee()
     cin.ignore();
     cout << "Input Id of employee you want to delete: ";
     getline(cin, id);
-    for (int i = 0; i < listEmployee.size(); i++) {
+    for (int i = 0; (unsigned)i < listEmployee.size(); i++) {
         if (listEmployee.at(i).getIdOfEmployee().compare(id) == 0) {
             index = i;
             this->idTemp = listEmployee.at(i).getIdOfEmployee();
@@ -282,21 +387,21 @@ int DataEmployee::deleteEmployee()
 void DataEmployee::display()
 {
     cout << setw(100) << "List of employees are working at Quyet Vjp Pro's Cafe" << endl;
-    cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "+---------------+-----------------------+---------------------------------------------------------------+---------------+-----------------------+---------------+---------------+" << endl;
     cout << "| Id\t\t| Name\t\t\t| Address\t\t\t\t\t\t\t| Phone Number\t| Date Of Birth\t\t| Basic Salary\t| Bonus\t\t|" << endl;
 
-    cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "+---------------+-----------------------+---------------------------------------------------------------+---------------+-----------------------+---------------+---------------+" << endl;
     for (int i = 0; unsigned(i) < listEmployee.size(); i++) {
         listEmployee.at(i).display();
 
     }
-    cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "+---------------+-----------------------+---------------------------------------------------------------+---------------+-----------------------+---------------+---------------+" << endl;
 }
 
 int DataEmployee::findById(string id)
 {
     int posOfId = -1;
-    for (int i = 0; i < listEmployee.size(); i++) {
+    for (int i = 0; (unsigned)i < listEmployee.size(); i++) {
         if (listEmployee.at(i).getIdOfEmployee().compare(id) == 0) {
             posOfId = i;
             break;
@@ -308,7 +413,7 @@ int DataEmployee::findById(string id)
 int DataEmployee::findByName(string name)
 {
     int posOfName = -1;
-    for (int i = 0; i < listEmployee.size(); i++) {
+    for (int i = 0; (unsigned)i < listEmployee.size(); i++) {
         if (listEmployee.at(i).getPerson().getName().compare(name) == 0) {
             posOfName = i;
             break;
@@ -329,10 +434,10 @@ void DataEmployee::HashDisplayByName()
     cout << "Input Name: ";
     getline(cin, name);
     bool flag = false;
-    cout << "+---------------+-----------------------+-----------------------+-----------------------+-------+-------+-------+---------------+---------------+" << endl;
-    cout << "| Id\t\t| Name\t\t\t| Address\t\t| Phone Number\t\t| Date Of Birth\t| Basic Salary\t| Bonus\t\t|" << endl;
-    cout << "+---------------+-----------------------+-----------------------+-----------------------+-------+-------+-------+---------------+---------------+" << endl;
-    for (int i = 0; i < listEmployee.size(); i++) {
+    cout << "+---------------+-----------------------+---------------------------------------------------------------+---------------+-----------------------+---------------+---------------+" << endl;
+    cout << "| Id\t\t| Name\t\t\t| Address\t\t\t\t\t\t\t| Phone Number\t| Date Of Birth\t\t| Basic Salary\t| Bonus\t\t|" << endl;
+    cout << "+---------------+-----------------------+---------------------------------------------------------------+---------------+-----------------------+---------------+---------------+" << endl;
+    for (int i = 0; (unsigned)i < listEmployee.size(); i++) {
         if (listEmployee.at(i).getPerson().getName().find(name) != string::npos) {
             listEmployee.at(i).display();
             flag = true;
@@ -341,7 +446,7 @@ void DataEmployee::HashDisplayByName()
     if (flag == false) {
         cout << "| NULL\t\t| NULL\t\t\t| NULL\t\t\t| NULL\t\t\t| NULL\t| NULL\t| NULL\t| NULL\t\t| NULL\t\t|" << endl;
     }
-    cout << "+---------------+-----------------------+-----------------------+-----------------------+-------+-------+-------+---------------+---------------+" << endl;
+    cout << "+---------------+-----------------------+---------------------------------------------------------------+---------------+-----------------------+---------------+---------------+" << endl;
 }
 
 void DataEmployee::handleString(string& str)
@@ -354,7 +459,7 @@ void DataEmployee::handleString(string& str)
     {
         str.erase(str.begin() + str.length() - 1);
     }
-    for (int i = 0; i < str.length(); i++)
+    for (int i = 0; (unsigned)i < str.length(); i++)
     {
 
         if (str[i] == ' ' && str[i + 1] == ' ')
@@ -363,7 +468,7 @@ void DataEmployee::handleString(string& str)
             i--;
         }
     }
-    for (int i = 0; i < str.length(); i++) {
+    for (int i = 0; (unsigned)i < str.length(); i++) {
         //65 90
         if (str[i] >= 65 && str[i] <= 90)
             str[i] += 32;
@@ -376,7 +481,7 @@ void DataEmployee::handleString(string& str)
         }
 
     }
-    for (int i = 0; i < str.length() - 1; i++)
+    for (int i = 0; (unsigned)i < str.length() - 1; i++)
     {
         if (str[i] == ' ' && str[i + 1] != ' ')
         {

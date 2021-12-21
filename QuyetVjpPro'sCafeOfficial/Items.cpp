@@ -83,7 +83,7 @@ long Items::total()
 void Items::display()
 {
 
-	cout<< "| "<<setw(5) << left << idOfItem << "\t\t\| " << setw(10) << nameOfItem << "\t| " << setw(10) << price << "\t|" << endl;
+	cout<< "| "<<setw(5) << left << idOfItem << "\t\t| " << setw(20) << nameOfItem << "\t| " << setw(10) << price << "\t|" << endl;
 	
 }
 
@@ -92,7 +92,7 @@ void Items::displaybyBill()
 	cout << "+---------------+---------------+---------------+-------+---------------+\n";
 	cout << "|ID BILL        | NAMEOFITEM    | PRICE         | AMOUNT| TOTAL         |\n";
 	cout << "+---------------+---------------+---------------+-------+---------------+\n";
-	cout << "| " << setw(5) << left << this->idBill  << "\t\t\| " << setw(10) << nameOfItem << "\t| " << setw(10) << price << "\t| " << setw(5) << this->amount << "\t|" << setw(10) << total() << "\t|\n";
+	cout << "| " << setw(5) << left << this->idBill  << "\t\t| " << setw(10) << nameOfItem << "\t| " << setw(10) << price << "\t| " << setw(5) << this->amount << "\t|" << setw(10) << total() << "\t|\n";
 	cout << "+---------------+---------------+---------------+-------+---------------+\n";
 
 }

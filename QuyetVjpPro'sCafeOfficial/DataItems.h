@@ -10,13 +10,18 @@ private:
 	int indexTemp = -1;
 	string oldName;	
 	string newName;
+	long oldPrice;
+	long newprice;
+	
 public:
 	DataItems();
 	string getIdTemp();
 	string getNameTemp();
+	long getOldPrice();
+	long getNewPrice();
 	int getIndexTemp();
 	string getOldName();
-	string getNewNamw();
+	string getNewName();
 	void readFile();
 	void insert(string nameOfItem, long price);
 	void Delete(string nameOfItem);

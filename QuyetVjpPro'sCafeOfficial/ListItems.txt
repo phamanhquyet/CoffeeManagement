@@ -1,17 +1,17 @@
-1,tra sua,15000
-2,kem,5000
-3,bac xiu,10000
-4,pepsi,10000
-5,nuoc suoi,5000
-6,ga ran,200000
-7,ga ran,100000
-8,banh gao,100000
-9,ABC,100000
-10,cafe,1000
-11,soda,10
-12,nuoc cam,100000
-13,ma tuy da,1000000
-14,can sa,10000000
-15,vit quay,10000
-16,thit heo nuoc,123
-17,ga rang muoi,123
+1|tra sua|15000
+2|kem|5000
+3|bac xiu|10000
+4|pepsi|10000
+5|nuoc suoi|5000
+6|ga ran|200000
+7|ga ran|100000
+8|banh gao|100000
+9|ABC|100000
+10|cafe|1000
+11|soda|10
+12|nuoc cam|100000
+13|ma tuy da|1000000
+14|ma tuy|10000
+15|vit quay|10000
+16|thit heo nuoc|123
+17|keo cu do|123

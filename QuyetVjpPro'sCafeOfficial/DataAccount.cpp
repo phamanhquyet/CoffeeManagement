@@ -55,7 +55,7 @@ void DataAccount::findUserByUsername()
 	cout << "| ID\t\t| Username\t\t| Password\t\t| Permission\t|" << endl;
 	cout << "+---------------+-----------------------+-----------------------+---------------+" << endl;
 	bool flag = false;
-	for (int i = 0; i < listAccount.size(); i++) {
+	for (int i = 0; (unsigned)i < listAccount.size(); i++) {
 		if (listAccount.at(i).getUsername().find(username) != string::npos ){
 			listAccount.at(i).display();
 			flag = true;

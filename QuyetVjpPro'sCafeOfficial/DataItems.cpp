@@ -15,6 +15,16 @@ string DataItems::getNameTemp()
 	return nameTemp;
 }
 
+long DataItems::getOldPrice()
+{
+	return oldPrice;
+}
+
+long DataItems::getNewPrice()
+{
+	return newprice;
+}
+
 int DataItems::getIndexTemp()
 {
 	return indexTemp;
@@ -25,7 +35,7 @@ string DataItems::getOldName()
 	return oldName;
 }
 
-string DataItems::getNewNamw()
+string DataItems::getNewName()
 {
 	return newName;
 }
@@ -35,8 +45,8 @@ void DataItems::readFile()
 	ifstream fi("ListItems.txt");
 	while (!fi.eof()) {
 		string str1, str2, str3;
-		getline(fi, str1,',');
-		getline(fi, str2, ',');
+		getline(fi, str1,'|');
+		getline(fi, str2, '|');
 		getline(fi, str3, '\n');
 		if (str1 == "" || str2 == ""||str3 == "") {
 			break;
@@ -101,7 +111,7 @@ void DataItems::Delete(string nameOfItem)
 bool DataItems::checkId(string id)
 {
 	bool flag = false;
-	for (auto i = 0; i < listItems.size(); i++) {
+	for (auto i = 0; (unsigned)i < listItems.size(); i++) {
 		if (listItems.at(i).getIdOfItem().compare(id) == 0) {
 			this->generateID += 1;
 			flag = true;
@@ -115,22 +125,22 @@ void DataItems::updateFIle()
 {
 	ofstream fo("ListItems.txt");
 	for (int i = 0; unsigned (i)< listItems.size(); i++) {
-		fo << listItems.at(i).getIdOfItem() << "," << listItems.at(i).getNameOfItem() << "," << listItems.at(i).getPrice() << endl;
+		fo << listItems.at(i).getIdOfItem() << "|" << listItems.at(i).getNameOfItem() << "|" << listItems.at(i).getPrice() << endl;
 	}
 	fo.close();
 }
 
 void DataItems::display()
 {
-	cout << "-------------------------------------------------" << endl;
-	cout << "| Id\t\t| Name\t\t| Price\t\t|" << endl;
+	cout << "+---------------+-----------------------+---------------+" << endl;
+	cout << "| Id\t\t| Name\t\t\t| Price\t\t|" << endl;
 
-	cout << "-------------------------------------------------" << endl;
+	cout << "+---------------+-----------------------+---------------+" << endl;
 	for (int i = 0; unsigned(i) < listItems.size(); i++) {
 		listItems.at(i).display();
 		
 	}
-	cout << "-------------------------------------------------" << endl;
+	cout << "+---------------+-----------------------+---------------+" << endl;
 }
 
 int DataItems::findById(string id)
@@ -169,10 +179,10 @@ void DataItems::HashDisplayByName()
 	cin.ignore();
 	getline(cin,name);
 	bool flag = false;
-	cout << "-------------------------------------------------" << endl;
-	cout << "| Id\t\t| Name\t\t| Price\t\t|" << endl;
+	cout << "+---------------+-----------------------+---------------+" << endl;
+	cout << "| Id\t\t| Name\t\t\t| Price\t\t|" << endl;
 
-	cout << "-------------------------------------------------" << endl;
+	cout << "+---------------+-----------------------+---------------+" << endl;
 	for (int i = 0; (unsigned)i < listItems.size(); i++) {
 		if (listItems.at(i).getNameOfItem().find(name) != std::string::npos) {
 			listItems.at(i).display();
@@ -182,7 +192,7 @@ void DataItems::HashDisplayByName()
 	if (flag == false) {
 		cout <<setw(15)<< "Can't find!\t\t\t\t\t|" << endl;
 	}
-	cout << "-------------------------------------------------" << endl;
+	cout << "+---------------+-----------------------+---------------+" << endl;
 }
 
 void DataItems::insertAnItem()
@@ -197,12 +207,30 @@ void DataItems::insertAnItem()
 	this->idTemp = idOfItem;
 	string nameOfItem;
 	long price;
+	inputName:
+	bool flagForName = false;
 	cout << "Enter name of item: ";
 	cin.ignore();
 	getline(cin, nameOfItem);
+	for (int i = 0; (unsigned)i < nameOfItem.length(); i++) {
+		if ((nameOfItem[i] != 32 && nameOfItem[i] >= 0 && nameOfItem[i] <= 43) || (nameOfItem[i] >= 58 && nameOfItem[i] <= 64) || (nameOfItem[i] >= 91 && nameOfItem[i] <= 96) || (nameOfItem[i] >= 123 && nameOfItem[i] <= 255)) {
+			cout << "Character \"" << nameOfItem[i] << "\" is invalid! ";
+			flagForName = true;
+			break;
+		}
+	}
+	if (flagForName == true) {
+		cout << "Please re-enter" << endl;
+		goto inputName;
+	}
 	fflush(stdin);
-	cout << "Enter price: ";
-	cin >> price;
+	do {
+		cout << "Enter price: ";
+		cin >> price;
+		if (price <= 0) {
+			cout << "Invalid! Please re-enter" << endl;
+		}
+	} while (price <= 0);
 	insert(nameOfItem, price);
 	Mysort();
 	updateFIle();
@@ -227,13 +255,36 @@ int DataItems::EditAnItem()
 	cout << "Enter name of item: ";
 	cin.ignore();
 	getline(cin, nameOfItem);
+
 	int pos = findByName(nameOfItem);
+	
 	if (pos > -1) {
+		this->oldPrice = listItems.at(pos).getPrice();
 		this->oldName = nameOfItem;
+		inputName:
+		bool flagForName = false;
 		cout << "Enter name you want to edit to: ";
 		getline(cin, nameOfItemWantToEdit);
-		cout << "Enter price you want to edit to: ";
-		cin >> priceWantToEdit;
+		for (int i = 0; (unsigned)i < nameOfItemWantToEdit.length(); i++) {
+			if ((nameOfItemWantToEdit[i] != 32 && nameOfItemWantToEdit[i] >= 0 && nameOfItemWantToEdit[i] <= 43) || (nameOfItemWantToEdit[i] >= 58 && nameOfItemWantToEdit[i] <= 64) || (nameOfItemWantToEdit[i] >= 91 && nameOfItemWantToEdit[i] <= 96) || (nameOfItemWantToEdit[i] >= 123 && nameOfItemWantToEdit[i] <= 255)) {
+				cout << "Character \"" << nameOfItemWantToEdit[i] << "\" is invalid! ";
+				flagForName = true;
+				break;
+			}
+		}
+		if (flagForName == true) {
+			cout << "Please re-enter" << endl;
+			goto inputName;
+		}
+		do {
+			cout << "Enter price you want to edit to: ";
+			cin >> priceWantToEdit;
+			if (priceWantToEdit <= 0) {
+				cout << "Invalid! Please re-enter" << endl;
+			}
+		} while (priceWantToEdit <= 0);
+
+		this->newprice = priceWantToEdit;
 		listItems.at(pos).setNameOfItem(nameOfItemWantToEdit);
 		this->newName = listItems.at(pos).getNameOfItem();
 		listItems.at(pos).setPrice(priceWantToEdit);
