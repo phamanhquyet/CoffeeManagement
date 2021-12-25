@@ -111,9 +111,12 @@ void Employee::displayBill(string idBill)
 	}
 }
 
+
+
 void Employee::readBill()
 {
 }
+
 
 void Employee::exportBill(string idBill)
 {
@@ -125,6 +128,59 @@ void Employee::exportBill(string idBill)
 		}
 	}
 	fo.close();
+}
+
+void Employee::payTheBill(string idBill)
+{
+	long sum = 0;
+	int index = -1;
+	for (int i = 0; (unsigned)i < Bill.size(); i++) {
+		if (Bill.at(i).getIdBill().compare(idBill) == 0) {
+			index = i;
+			sum += Bill.at(i).getPrice();
+			cout << "Successfully paid for " << Bill.at(i).getAmount() << " " << Bill.at(i).getNameOfItem() << " with the price of " << Bill.at(i).getPrice() << endl;
+			Bill.erase(Bill.begin() + index);
+			i--;
+		}
+	}
+	if (index == -1) {
+		cout << "Can't find this bill!" << endl;
+	}
+	else {
+		cout << "Payment success! The proceeds are: "<< sum << endl;
+	}
+}
+
+
+void Employee::deleteABill()
+{
+	int index = -1;
+	string idBill, nameOfItem;
+	cin.ignore();
+	cout << "Input id of bill you want to delete: ";
+	getline(cin, idBill);
+	cout << "Input name of item you want to delete: ";
+	getline(cin, nameOfItem);
+	for (int i = 0; (unsigned)i < Bill.size(); i++) {
+		if (Bill.at(i).getIdBill().compare(idBill) == 0 && Bill.at(i).getNameOfItem().compare(nameOfItem) == 0) {
+			index = i;
+			Bill.erase(Bill.begin() + index);
+			cout << "DONE!" << endl;
+			break;
+		}
+	}
+	if (index == -1) {
+		cout << "Can't find this bill!" << endl;
+	}
+
+	
+}
+
+void Employee::displayAllBill()
+{
+	for (int i = 0; i < Bill.size(); i++) {
+		Bill.at(i).displaybyBill();
+	}
 }
 
 Employee::~Employee()

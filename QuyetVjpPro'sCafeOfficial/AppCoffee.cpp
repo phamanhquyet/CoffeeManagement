@@ -204,8 +204,12 @@ void AppCoffee::showCaseAdmin()
 		case 'e': {
 			return;
 		}
-		default:
+		default:{
+			cout << "Invalid Button! Please try again" << endl;
+			system("pause");
+			cin.ignore();
 			break;
+		}
 		}
 		system("cls");
 	}
@@ -215,14 +219,13 @@ void AppCoffee::showCaseEmployee()
 {
 	char key;
 	while (true) {
-		cout << "\t\t\t\tQuyetVjpPro's Cafe Menu"<<endl;
+		cout << "\t\tQuyetVjpPro's Cafe Menu"<<endl;
 		listItems.display();
 		cout << "+-------------------------------------MENU EMPLOYEE-----------------------------------+\n";
-		cout << "|                               1. Them & Tinh Bill                                   |\n";
-		cout << "|                               2. Xoa Bill                                           |\n";
-		cout << "|                               3. Sua Bill                                           |\n";
-		cout << "|                               4. Tim Kiem Bill                                      |\n";
-		cout << "|                               5. Hien thi Bill                                      |\n";
+		cout << "|                               1. Them Bill                                          |\n";
+		cout << "|                               2. Huy bo bill                                        |\n";
+		cout << "|                               3. Xac nhan thanh toan                                |\n";
+		cout << "|                               4. Hien thi toan bo Bill chua thanh toan              |\n";
 		cout << "|                               e. Thoat                                              |\n";
 		cout << "+-------------------------------------------------------------------------------------+\n";
 		cout << "\nINPUT BUTTON: ";
@@ -234,31 +237,33 @@ void AppCoffee::showCaseEmployee()
 			system("pause");
 			break;
 		}
-		case '2':
-			listItems.DeleteAnItem();
+		case '2':{
+			emp.deleteABill();
 			system("pause");
 			break;
-		case '3':
-			listItems.EditAnItem();
-			system("pause");
-			break;
-		case '4':
-			listItems.HashDisplayByName();
-			system("pause");
-			break;
-		case '5':{
+		}
+		case '3':{
 			string id;
 			cout << "Enter id of bill: ";
 			cin.ignore();
 			getline(cin, id);
-			emp.exportBill(id);
+			emp.payTheBill(id);
+			system("pause");
+			break;
+		}
+		case '4':{
+			emp.displayAllBill();
 			system("pause");
 			break;
 		}
 		case 'e':
 			return;
-		default:
+		default: {
+			cout << "Invalid Button! Please try again" << endl;
+			system("pause");
+			cin.ignore();
 			break;
+		}
 		}
 		system("cls");
 	}

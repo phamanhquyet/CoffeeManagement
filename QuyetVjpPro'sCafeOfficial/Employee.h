@@ -31,6 +31,9 @@ public:
 	void displayBill(string idBill);
 	void readBill();
 	void exportBill(string idBill);
+	void payTheBill(string idBill);
+	void deleteABill();
+	void displayAllBill();
 	~Employee();
 };
 

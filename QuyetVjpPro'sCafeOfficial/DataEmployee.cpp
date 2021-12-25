@@ -71,6 +71,7 @@ void DataEmployee::insert()
     string name, address, phone_number;
     string day, month, year;
     int dayOfBirth, monthOfBirth, yearOfBirth;
+    string bonusTemp, basicSalaryTemp;
     int bonus;
     long basic_salary;
     this->generateId = 1;
@@ -180,23 +181,53 @@ void DataEmployee::insert()
         }
         yearOfBirth = stoi(year);
         if (dayOfBirth > emp.getPerson().getDateOfBirth().maxDay(monthOfBirth, yearOfBirth) || (monthOfBirth < 0 || monthOfBirth > 12) || (yearOfBirth < 1900 || yearOfBirth > 2500)) {
-            cout << "Invalid, please re-enter" << endl;
+            cout << "This date is Invalid, please re-enter" << endl;
         }
     } while (dayOfBirth > emp.getPerson().getDateOfBirth().maxDay(monthOfBirth, yearOfBirth) || (monthOfBirth < 0 || monthOfBirth > 12) || (yearOfBirth < 1900 || yearOfBirth > 2500));
     do {
+        inputBasicSalary:
+        bool flagForBasicSalary = false;
         cout << "Input Basic Salary: ";
-        cin >> basic_salary;
-        if (basic_salary < 0) {
+        getline(cin, basicSalaryTemp);
+
+        for (int i = 0; (unsigned)i < basicSalaryTemp.length(); i++) {
+            if (basicSalaryTemp[i] < 48 || basicSalaryTemp[i] > 57) {
+                cout << "Character '" << basicSalaryTemp[i] << "' is invalid! ";
+                flagForBasicSalary = true;
+                break;
+            }
+        }
+        if (flagForBasicSalary == true) {
+            cout << "Please re-enter" << endl;
+            goto inputBasicSalary;
+        }
+        basic_salary = stoi(basicSalaryTemp);
+        if (basic_salary <= 0) {
             cout << "Invalid, please re-enter" << endl;
         }
-    } while (basic_salary < 0);
+    } while (basic_salary <= 0);
     do {
-        cout << "Input Bonus: ";
-        cin >> bonus;
-        if (bonus < 0) {
+        inputBonus:
+        bool flagForBonus = false;
+        cout << "Input Bouns: ";
+        getline(cin, bonusTemp);
+
+        for (int i = 0; (unsigned)i < bonusTemp.length(); i++) {
+            if (bonusTemp[i] < 48 || bonusTemp[i] > 57) {
+                cout << "Character '" << bonusTemp[i] << "' is invalid! ";
+                flagForBonus = true;
+                break;
+            }
+        }
+        if (flagForBonus == true) {
+            cout << "Please re-enter" << endl;
+            goto inputBonus;
+        }
+        bonus = stoi(bonusTemp);
+        if (bonus <= 0) {
             cout << "Invalid, please re-enter" << endl;
         }
-    } while (bonus < 0);
+    } while (bonus <= 0);
     Employee emp(idOfEmployee, name, address, phone_number, dayOfBirth, monthOfBirth, yearOfBirth, basic_salary, bonus);
     listEmployee.push_back(emp);
     Mysort();
@@ -371,7 +402,7 @@ int DataEmployee::deleteEmployee()
     for (int i = 0; (unsigned)i < listEmployee.size(); i++) {
         if (listEmployee.at(i).getIdOfEmployee().compare(id) == 0) {
             index = i;
-            this->idTemp = listEmployee.at(i).getIdOfEmployee();
+            this->idTemp = listEmployee.at(i).getIdOfEmployee();  //giu lai id cua nguoi da bi xoa de khi them vao nhan vien moi nhan vien do se nam o vi tri bi xoa truoc do
             listEmployee.erase(listEmployee.begin() + index);
             cout << "DONE!\n";
         }
