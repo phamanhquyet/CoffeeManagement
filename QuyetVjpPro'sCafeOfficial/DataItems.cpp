@@ -190,7 +190,7 @@ void DataItems::HashDisplayByName()
 		}
 	}
 	if (flag == false) {
-		cout <<setw(15)<< "Can't find!\t\t\t\t\t|" << endl;
+		cout <<"| " << setw(15) << "Can't find!\t\t\t\t\t\t|" << endl;
 	}
 	cout << "+---------------+-----------------------+---------------+" << endl;
 }

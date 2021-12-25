@@ -475,7 +475,7 @@ void DataEmployee::HashDisplayByName()
         }
     }
     if (flag == false) {
-        cout << "| NULL\t\t| NULL\t\t\t| NULL\t\t\t| NULL\t\t\t| NULL\t| NULL\t| NULL\t| NULL\t\t| NULL\t\t|" << endl;
+        cout << "| NULL\t\t| NULL\t\t\t| NULL\t\t\t\t\t\t\t\t| NULL\t\t| NULL\t\t\t| NULL\t\t| NULL\t\t|" << endl;
     }
     cout << "+---------------+-----------------------+---------------------------------------------------------------+---------------+-----------------------+---------------+---------------+" << endl;
 }
