@@ -137,8 +137,8 @@ void Employee::payTheBill(string idBill)
 	for (int i = 0; (unsigned)i < Bill.size(); i++) {
 		if (Bill.at(i).getIdBill().compare(idBill) == 0) {
 			index = i;
-			sum += Bill.at(i).getPrice();
-			cout << "Successfully paid for " << Bill.at(i).getAmount() << " " << Bill.at(i).getNameOfItem() << " with the price of " << Bill.at(i).getPrice() << endl;
+			sum += Bill.at(i).getPrice() * Bill.at(i).getAmount();
+			cout << "Successfully paid for " << Bill.at(i).getAmount() << " " << Bill.at(i).getNameOfItem() << " with the price of " << Bill.at(i).getPrice()<<"/item" << endl;
 			Bill.erase(Bill.begin() + index);
 			i--;
 		}
@@ -154,6 +154,10 @@ void Employee::payTheBill(string idBill)
 
 void Employee::deleteABill()
 {
+	if (Bill.size() == 0) {
+		cout << "No bills!" << endl;
+		return;
+	}
 	int index = -1;
 	string idBill, nameOfItem;
 	cin.ignore();
