@@ -6,12 +6,6 @@ int main()
 {
 	AppCoffee app;
 	app.login();
-	/*DataItems dt;
-	dt.EditAnItem();
-	dt.updateFIle();
-	dt.display();*/
-	/*DataEmployee dt;
-	dt.display();*/
 	return 0;
 }
 

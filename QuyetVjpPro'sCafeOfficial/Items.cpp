@@ -35,7 +35,7 @@ string Items::getNameOfItem()
 	return nameOfItem;
 }
 
-int Items::getPrice()
+long Items::getPrice()
 {
 	return price;
 }
@@ -60,7 +60,9 @@ void Items::setNameOfItem(string nameOfItem)
 	this->nameOfItem = nameOfItem;
 }
 
-void Items::setPrice(int price)
+
+
+void Items::setPrice(long price)
 {
 	this->price = price;
 }

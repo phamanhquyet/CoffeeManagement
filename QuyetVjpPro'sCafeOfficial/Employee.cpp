@@ -178,8 +178,11 @@ void Employee::deleteABill()
 
 void Employee::displayAllBill()
 {
-	for (int i = 0; i < Bill.size(); i++) {
+	for (int i = 0; (unsigned)i < Bill.size(); i++) {
 		Bill.at(i).displaybyBill();
+	}
+	if (Bill.size() == 0) {
+		cout << "There are no outstanding invoices to show" << endl;
 	}
 }
 

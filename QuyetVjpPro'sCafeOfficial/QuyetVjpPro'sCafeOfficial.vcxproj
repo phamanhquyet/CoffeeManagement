@@ -146,7 +146,6 @@
     <ClCompile Include="DataItems.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Employee.cpp" />
-    <ClCompile Include="FunctionInterface.cpp" />
     <ClCompile Include="Items.cpp" />
     <ClCompile Include="Log_Time.cpp" />
     <ClCompile Include="Person.cpp" />
@@ -160,7 +159,6 @@
     <ClInclude Include="DataItems.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Employee.h" />
-    <ClInclude Include="FunctionInterface.h" />
     <ClInclude Include="Items.h" />
     <ClInclude Include="Log_Time.h" />
     <ClInclude Include="Person.h" />
@@ -172,7 +170,6 @@
     <Text Include="ListAccount.txt" />
     <Text Include="ListEmployee.txt" />
     <Text Include="ListItems.txt" />
-    <Text Include="testListEmp.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

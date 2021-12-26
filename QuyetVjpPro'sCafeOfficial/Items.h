@@ -20,13 +20,13 @@ public:
 	//getter
 	string getIdOfItem();
 	string getNameOfItem();
-	int getPrice();
+	long getPrice();
 	long getAmount();
 	string getIdBill();
 	//setter
 	void setIdOfItem(string idOfItem);
 	void setNameOfItem(string nameOfItem);
-	void setPrice(int price);
+	void setPrice(long price);
 	void setAmount(long amount);
 	void setIdBill(string idBill);
 	long total();

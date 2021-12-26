@@ -19,12 +19,6 @@
     <Filter Include="Source Files\Employee">
       <UniqueIdentifier>{3b7aad89-2225-44e1-82a8-ff6ac4c197af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Interface">
-      <UniqueIdentifier>{6a1646a6-6f23-435d-a4b3-c78dcb7d47c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Interface">
-      <UniqueIdentifier>{07b89fe8-904a-4f03-8b1f-d10ecbf14e53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Items">
       <UniqueIdentifier>{e36057ef-2310-49c5-91cc-fbd1153386df}</UniqueIdentifier>
     </Filter>
@@ -56,9 +50,6 @@
     </ClCompile>
     <ClCompile Include="Employee.cpp">
       <Filter>Source Files\Employee</Filter>
-    </ClCompile>
-    <ClCompile Include="FunctionInterface.cpp">
-      <Filter>Source Files\Interface</Filter>
     </ClCompile>
     <ClCompile Include="Items.cpp">
       <Filter>Source Files\Items</Filter>
@@ -92,9 +83,6 @@
     <ClInclude Include="Employee.h">
       <Filter>Header Files\Employee</Filter>
     </ClInclude>
-    <ClInclude Include="FunctionInterface.h">
-      <Filter>Header Files\Interface</Filter>
-    </ClInclude>
     <ClInclude Include="Items.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
@@ -122,9 +110,6 @@
       <Filter>Header Files\Data</Filter>
     </Text>
     <Text Include="ListEmployee.txt">
-      <Filter>Header Files\Data</Filter>
-    </Text>
-    <Text Include="testListEmp.txt">
       <Filter>Header Files\Data</Filter>
     </Text>
     <Text Include="ListAccount.txt">
