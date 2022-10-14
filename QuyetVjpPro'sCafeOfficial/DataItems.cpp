@@ -75,7 +75,6 @@ void DataItems::Delete(string nameOfItem)
 		if (listItems.at(i).getNameOfItem().compare(nameOfItem) == 0) {
 			position = i;
 			this->nameTemp = nameOfItem;
-			
 			break;
 		}
 	}

@@ -4,3 +4,4 @@
 4,nguyenvana,123456,employee
 5,admin,1,admin
 6,1,1,employee
+7,employee,1,employee
